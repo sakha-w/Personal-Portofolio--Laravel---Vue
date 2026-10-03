@@ -4,7 +4,10 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "astro:dev": "astro dev",
+        "astro:build": "astro build",
+        "astro:preview": "astro preview"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
@@ -15,5 +18,14 @@
     },
     "optionalDependencies": {
         "@laravel/multiplex": "^0.4.1"
+    },
+    "dependencies": {
+        "@astrojs/node": "^11.1.6",
+        "@astrojs/vue": "^7.0.3",
+        "@vitejs/plugin-vue": "^6.0.9",
+        "astro": "^7.3.5",
+        "naive-ui": "^2.45.3",
+        "vfonts": "^0.0.3",
+        "vue": "^3.5.43"
     }
 }
