@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.vue';
+---
+
+<Layout title="Contact | Sakha Wibisono" description="Get in touch with Sakha Wibisono.">
+	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-6">
+		<div>
+			<h1 class="text-3xl font-extrabold text-white">Contact</h1>
+			<p class="text-sm text-slate-400 mt-1">Messages are stored securely via the Laravel API.</p>
+		</div>
+		<ContactForm client:load />
+	</main>
+</Layout>

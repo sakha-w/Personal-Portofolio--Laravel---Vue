@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SkillsView from '../components/SkillsView.vue';
+---
+
+<Layout title="Skills | Sakha Wibisono" description="Technical skills of Sakha Wibisono grouped by category.">
+	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-6">
+		<div>
+			<h1 class="text-3xl font-extrabold text-white">Skills & Expertise</h1>
+			<p class="text-sm text-slate-400 mt-1">Grouped by category, served live from the Laravel API.</p>
+		</div>
+		<SkillsView client:load />
+	</main>
+</Layout>

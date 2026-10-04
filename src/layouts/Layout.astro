@@ -1,32 +1,110 @@
 ---
+import '../styles/global.css';
+
 interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = 'Personal technical portfolio of Sakha Wibisono — Informatics graduate and software developer.' } = Astro.props;
+
+const navLinks = [
+	{ href: '/', label: 'Home' },
+	{ href: '/about', label: 'About' },
+	{ href: '/experience', label: 'Experience' },
+	{ href: '/projects', label: 'Projects' },
+	{ href: '/skills', label: 'Skills' },
+	{ href: '/education', label: 'Education' },
+	{ href: '/certificates', label: 'Certificates' },
+	{ href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Fresh Graduate Portfolio Dashboard built with Astro, Vue.js and Naive UI" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<link rel="canonical" href={Astro.url.href} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
 		<title>{title}</title>
 		<!-- vfonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 	</head>
-	<body class="bg-slate-50 text-slate-800 m-0 p-0 min-h-screen">
+	<body class="bg-slate-950 text-slate-100 m-0 p-0 min-h-screen">
+		<nav class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+				<a href="/" class="font-bold text-white text-lg tracking-tight">Sakha<span class="text-indigo-400">.dev</span></a>
+				<div class="hidden md:flex items-center gap-1">
+					{navLinks.map(link => (
+						<a
+							href={link.href}
+							class:list={[
+								'px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+								currentPath === link.href
+									? 'text-white bg-white/10'
+									: 'text-slate-400 hover:text-white hover:bg-white/5'
+							]}
+						>
+							{link.label}
+						</a>
+					))}
+				</div>
+				<a href="/contact" class="md:hidden px-3 py-2 rounded-lg text-sm font-medium text-white bg-indigo-600">Contact</a>
+			</div>
+			<div class="md:hidden border-t border-white/5 px-4 py-2 flex gap-1 overflow-x-auto">
+				{navLinks.map(link => (
+					<a
+						href={link.href}
+						class:list={[
+							'px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors',
+							currentPath === link.href
+								? 'text-white bg-white/10'
+								: 'text-slate-400 hover:text-white hover:bg-white/5'
+						]}
+					>
+						{link.label}
+					</a>
+				))}
+			</div>
+		</nav>
+
 		<slot />
+
+		<footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 pb-8 border-t border-white/10 text-center text-xs text-slate-500">
+			<p>© 2026 Sakha Wibisono. Built with Astro, Vue.js, Laravel & PostgreSQL.</p>
+		</footer>
+
+		<script>
+			// Minimal page-view analytics (PRD FR-16, data minimization)
+			try {
+				fetch('http://localhost:8000/api/analytics/view', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ page: window.location.pathname, referrer: document.referrer || null }),
+				}).catch(() => {});
+			} catch {}
+		</script>
 	</body>
 </html>
 
 <style>
 	html, body {
 		font-family: 'Inter', sans-serif;
-		background-color: #f8fafc;
+		background-color: #020617;
+	}
+	.glass {
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
 	}
 </style>

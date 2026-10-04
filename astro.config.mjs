@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 import vue from '@astrojs/vue';
 import node from '@astrojs/node';
 
@@ -9,6 +10,9 @@ export default defineConfig({
     mode: 'standalone'
   }),
   integrations: [vue()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   server: {
     port: 4321,
     host: true

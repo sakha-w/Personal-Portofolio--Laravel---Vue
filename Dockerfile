@@ -25,7 +25,7 @@ COPY . .
 RUN chown -R www-data:www-data /var/www
 
 # Install JS dependencies
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 EXPOSE 9000 5173 4321
 

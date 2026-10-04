@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectDetail from '../../components/ProjectDetail.vue';
+
+const { slug } = Astro.params;
+---
+
+<Layout title="Project Detail | Sakha Wibisono" description="Project case study.">
+	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-6">
+		<a href="/projects" class="text-sm text-indigo-400 hover:text-indigo-300">← Back to projects</a>
+		<ProjectDetail client:load slug={slug} />
+	</main>
+</Layout>

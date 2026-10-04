@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CertificateGrid from '../components/CertificateGrid.vue';
+---
+
+<Layout title="Certificates | Sakha Wibisono" description="Professional certificates of Sakha Wibisono.">
+	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-6">
+		<div>
+			<h1 class="text-3xl font-extrabold text-white">Certificates</h1>
+			<p class="text-sm text-slate-400 mt-1">Professional certifications from Dicoding and Coursera.</p>
+		</div>
+		<CertificateGrid client:load />
+	</main>
+</Layout>

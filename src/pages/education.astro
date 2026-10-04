@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EducationList from '../components/EducationList.vue';
+---
+
+<Layout title="Education | Sakha Wibisono" description="Education background of Sakha Wibisono.">
+	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-6">
+		<div>
+			<h1 class="text-3xl font-extrabold text-white">Education</h1>
+			<p class="text-sm text-slate-400 mt-1">Diploma and Bachelor degrees from Telkom University.</p>
+		</div>
+		<EducationList client:load />
+	</main>
+</Layout>
