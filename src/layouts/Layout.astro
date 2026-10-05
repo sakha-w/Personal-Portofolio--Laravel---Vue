@@ -1,5 +1,4 @@
 ---
-import '../styles/global.css';
 
 interface Props {
 	title: string;
@@ -35,25 +34,22 @@ const currentPath = Astro.url.pathname;
 		<meta property="og:type" content="website" />
 		<title>{title}</title>
 		
-		<!-- Typography: Inter (Primary) + JetBrains Mono (Technical) -->
+		<!-- Typography: Manrope (Primary) + JetBrains Mono (Technical) -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;650;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/src/styles/global.css" />
 	</head>
-	<body class="m-0 p-0 min-h-screen flex flex-col justify-between selection:bg-[#C8B6FF]/40 selection:text-[#24252A]">
+	<body class="m-0 p-0 min-h-screen flex flex-col justify-between selection:bg-lavender/40 selection:text-ink">
 		<!-- Floating Glass Pill Navbar -->
 		<header class="sticky top-4 z-50 px-4 sm:px-6 w-full">
 			<nav class="glass-nav-pill max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
 				<div class="flex items-center gap-3">
 					<a href="/" class="group flex items-center gap-2">
-						<span class="font-bold text-[#24252A] text-base tracking-tight group-hover:opacity-80 transition-opacity">
+						<span class="font-bold text-ink text-base tracking-tight group-hover:opacity-80 transition-opacity">
 							Sakha<span class="text-[#8d6ee8] font-mono font-medium">.dev</span>
 						</span>
 					</a>
-					<div class="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#B8E0D2]/40 border border-[#B8E0D2] text-[#24252A] text-xs font-mono">
-						<span class="w-1.5 h-1.5 rounded-full bg-[#48a184]"></span>
-						<span class="text-[11px] font-medium">Available</span>
-					</div>
 				</div>
 
 				<div class="hidden md:flex items-center gap-1">
@@ -63,8 +59,8 @@ const currentPath = Astro.url.pathname;
 							class:list={[
 								'px-3 py-1.5 rounded-full text-xs transition-all duration-200',
 								currentPath === link.href
-									? 'text-[#24252A] bg-white shadow-sm border border-white font-medium'
-									: 'text-[#686A73] hover:text-[#24252A] hover:bg-white/50'
+									? 'text-ink bg-white shadow-sm border border-white font-medium'
+									: 'text-muted hover:text-ink hover:bg-white/50'
 							]}
 						>
 							{link.label}
@@ -85,8 +81,8 @@ const currentPath = Astro.url.pathname;
 						class:list={[
 							'px-2.5 py-1 rounded-full text-xs whitespace-nowrap transition-all duration-200',
 							currentPath === link.href
-								? 'text-[#24252A] bg-white shadow-xs font-medium'
-								: 'text-[#686A73] hover:text-[#24252A]'
+								? 'text-ink bg-white shadow-xs font-medium'
+								: 'text-muted hover:text-ink'
 						]}
 					>
 						{link.label}
@@ -101,13 +97,13 @@ const currentPath = Astro.url.pathname;
 
 		<!-- Footer -->
 		<footer class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-8 pb-10 border-t border-[#686A73]/15 w-full text-center">
-			<div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#686A73] font-mono">
+			<div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted font-mono">
 				<p>© 2026 Sakha Wibisono — Personal Engineering Showcase</p>
 				<div class="flex items-center gap-2">
-					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-[#24252A]">Astro</span>
-					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-[#24252A]">Vue</span>
-					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-[#24252A]">Laravel</span>
-					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-[#24252A]">PostgreSQL</span>
+					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-ink">Astro</span>
+					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-ink">Vue</span>
+					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-ink">Laravel</span>
+					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-ink">PostgreSQL</span>
 				</div>
 			</div>
 		</footer>
