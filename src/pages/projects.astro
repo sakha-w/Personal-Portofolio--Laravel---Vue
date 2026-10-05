@@ -3,11 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import ProjectGrid from '../components/ProjectGrid.vue';
 ---
 
-<Layout title="Projects | Sakha Wibisono" description="Project portfolio of Sakha Wibisono with case studies.">
-	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-6">
-		<div>
-			<h1 class="text-3xl font-extrabold text-white">Projects</h1>
-			<p class="text-sm text-slate-400 mt-1">Filter by category. Click a card to open its case study.</p>
+<Layout title="Projects | Sakha Wibisono" description="Project portfolio of Sakha Wibisono with technical case studies.">
+	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10 space-y-8">
+		<div class="border-b border-[#686A73]/15 pb-6">
+			<span class="technical-label uppercase text-[#7f5be8] tracking-wider block font-semibold">// ENGINEERING_PORTFOLIO</span>
+			<h1 class="section-heading mt-1">Featured Projects</h1>
+			<p class="small-text mt-1 max-w-xl">
+				Explore full-stack applications, machine learning projects, and enterprise systems with detailed architectural case studies.
+			</p>
 		</div>
 		<ProjectGrid client:load />
 	</main>

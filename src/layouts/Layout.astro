@@ -34,53 +34,82 @@ const currentPath = Astro.url.pathname;
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<title>{title}</title>
-		<!-- vfonts -->
+		
+		<!-- Typography: Inter (Primary) + JetBrains Mono (Technical) -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;650;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
-	<body class="bg-slate-950 text-slate-100 m-0 p-0 min-h-screen">
-		<nav class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-				<a href="/" class="font-bold text-white text-lg tracking-tight">Sakha<span class="text-indigo-400">.dev</span></a>
+	<body class="m-0 p-0 min-h-screen flex flex-col justify-between selection:bg-[#C8B6FF]/40 selection:text-[#24252A]">
+		<!-- Floating Glass Pill Navbar -->
+		<header class="sticky top-4 z-50 px-4 sm:px-6 w-full">
+			<nav class="glass-nav-pill max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+				<div class="flex items-center gap-3">
+					<a href="/" class="group flex items-center gap-2">
+						<span class="font-bold text-[#24252A] text-base tracking-tight group-hover:opacity-80 transition-opacity">
+							Sakha<span class="text-[#8d6ee8] font-mono font-medium">.dev</span>
+						</span>
+					</a>
+					<div class="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#B8E0D2]/40 border border-[#B8E0D2] text-[#24252A] text-xs font-mono">
+						<span class="w-1.5 h-1.5 rounded-full bg-[#48a184]"></span>
+						<span class="text-[11px] font-medium">Available</span>
+					</div>
+				</div>
+
 				<div class="hidden md:flex items-center gap-1">
 					{navLinks.map(link => (
 						<a
 							href={link.href}
 							class:list={[
-								'px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+								'px-3 py-1.5 rounded-full text-xs transition-all duration-200',
 								currentPath === link.href
-									? 'text-white bg-white/10'
-									: 'text-slate-400 hover:text-white hover:bg-white/5'
+									? 'text-[#24252A] bg-white shadow-sm border border-white font-medium'
+									: 'text-[#686A73] hover:text-[#24252A] hover:bg-white/50'
 							]}
 						>
 							{link.label}
 						</a>
 					))}
 				</div>
-				<a href="/contact" class="md:hidden px-3 py-2 rounded-lg text-sm font-medium text-white bg-indigo-600">Contact</a>
-			</div>
-			<div class="md:hidden border-t border-white/5 px-4 py-2 flex gap-1 overflow-x-auto">
+
+				<a href="/contact" class="hidden sm:inline-flex md:hidden px-3.5 py-1.5 rounded-full text-xs font-semibold glass-button-primary">
+					Contact
+				</a>
+			</nav>
+
+			<!-- Mobile Horizontal Scroll Navigation Pill -->
+			<div class="md:hidden max-w-lg mx-auto mt-2 px-3 py-1.5 glass-nav-pill flex gap-1 overflow-x-auto no-scrollbar justify-start sm:justify-center">
 				{navLinks.map(link => (
 					<a
 						href={link.href}
 						class:list={[
-							'px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors',
+							'px-2.5 py-1 rounded-full text-xs whitespace-nowrap transition-all duration-200',
 							currentPath === link.href
-								? 'text-white bg-white/10'
-								: 'text-slate-400 hover:text-white hover:bg-white/5'
+								? 'text-[#24252A] bg-white shadow-xs font-medium'
+								: 'text-[#686A73] hover:text-[#24252A]'
 						]}
 					>
 						{link.label}
 					</a>
 				))}
 			</div>
-		</nav>
+		</header>
 
-		<slot />
+		<div class="flex-1">
+			<slot />
+		</div>
 
-		<footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 pb-8 border-t border-white/10 text-center text-xs text-slate-500">
-			<p>© 2026 Sakha Wibisono. Built with Astro, Vue.js, Laravel & PostgreSQL.</p>
+		<!-- Footer -->
+		<footer class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-8 pb-10 border-t border-[#686A73]/15 w-full text-center">
+			<div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#686A73] font-mono">
+				<p>© 2026 Sakha Wibisono — Personal Engineering Showcase</p>
+				<div class="flex items-center gap-2">
+					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-[#24252A]">Astro</span>
+					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-[#24252A]">Vue</span>
+					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-[#24252A]">Laravel</span>
+					<span class="px-2 py-0.5 rounded-full bg-white/70 border border-white text-[#24252A]">PostgreSQL</span>
+				</div>
+			</div>
 		</footer>
 
 		<script>
@@ -95,16 +124,3 @@ const currentPath = Astro.url.pathname;
 		</script>
 	</body>
 </html>
-
-<style>
-	html, body {
-		font-family: 'Inter', sans-serif;
-		background-color: #020617;
-	}
-	.glass {
-		background: rgba(255, 255, 255, 0.06);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		backdrop-filter: blur(16px);
-		-webkit-backdrop-filter: blur(16px);
-	}
-</style>

@@ -1,6 +1,6 @@
 import { n as __reExport, t as __exportAll } from "./chunks/rolldown-runtime_BBjsoOtd.mjs";
 import { C as InvalidGetStaticPathsReturn, D as LocalsReassigned, E as LocalsNotAnObject, G as ReservedSlotName, H as PrerenderClientAddressNotAvailable, I as NoManifestAvailable, J as SessionStorageInitError, K as ResponseSentError, O as MiddlewareNoDataOrNextCalled, S as InvalidGetStaticPathsEntry, U as PrerenderDynamicEndpointPathCollide, V as PageNumberParamNotFound, X as StaticClientAddressNotAvailable, Y as SessionStorageSaveError, _ as GetStaticPathsInvalidRouteParam, a as AstroResponseHeadersReassigned, et as i18nNoLocaleFoundInPath, g as GetStaticPathsExpectedParams, h as ForbiddenRewrite, i as ActionsReturnedInvalidDataError, k as MiddlewareNotAResponse, n as isAstroError, o as CacheNotEnabled, q as RewriteWithBodyUsed, r as ActionNotFoundError, s as ClientAddressNotAvailable, t as AstroError, v as GetStaticPathsRequired, z as NoMatchingStaticPathFound } from "./chunks/errors_CAafeVI3.mjs";
-import { A as fetchStateSymbol, C as isRoute500, D as REDIRECT_STATUS_CODES, E as DEFAULT_404_COMPONENT, F as decryptString, I as generateCspDigest, M as originPathnameSymbol, N as responseSentSymbol$1, O as REROUTABLE_STATUS_CODES, P as decodeKey, S as isRoute404, T as ASTRO_GENERATOR, _ as isAstroComponentFactory, a as chunkToString, b as renderEndpoint, c as renderSlotToString, g as pushDirective, h as normalizeCspResourceEntry, i as renderComponent, j as nodeRequestAbortControllerCleanupSymbol, k as clientAddressSymbol, l as isRenderTemplateResult, m as isRenderInstruction, n as renderPage, o as createSlotValueFromString, r as renderJSX, u as renderTemplate, v as markHTMLString, w as ASTRO_ERROR_HEADER } from "./chunks/server_BlGQXW16.mjs";
+import { A as clientAddressSymbol, C as isRoute404, D as DEFAULT_404_COMPONENT, E as ASTRO_GENERATOR, F as decodeKey, I as decryptString, L as generateCspDigest, M as nodeRequestAbortControllerCleanupSymbol, N as originPathnameSymbol, O as REDIRECT_STATUS_CODES, P as responseSentSymbol$1, T as ASTRO_ERROR_HEADER, _ as pushDirective, a as chunkToString, c as renderSlotToString, g as normalizeCspResourceEntry, h as isRenderInstruction, i as renderComponent, j as fetchStateSymbol, k as REROUTABLE_STATUS_CODES, l as isRenderTemplateResult, n as renderPage, o as createSlotValueFromString, r as renderJSX, u as renderTemplate, v as isAstroComponentFactory, w as isRoute500, x as renderEndpoint, y as markHTMLString } from "./chunks/server_Yb4BXgHG.mjs";
 import { n as AstroIntegrationLogger, r as astroToRuntimeLogger, t as createConsoleLogger } from "./chunks/console_BS3552R5.mjs";
 import { createSSRApp, defineComponent, h } from "vue";
 import { renderToString } from "vue/server-renderer";
@@ -235,6 +235,31 @@ var renderers = [Object.assign({
 		"scripts": [],
 		"styles": [],
 		"routeData": {
+			"route": "/about",
+			"isIndex": false,
+			"type": "page",
+			"pattern": "^\\/about\\/?$",
+			"segments": [[{
+				"content": "about",
+				"dynamic": false,
+				"spread": false
+			}]],
+			"params": [],
+			"component": "src/pages/about.astro",
+			"pathname": "/about",
+			"prerender": false,
+			"fallbackRoutes": [],
+			"distURL": [],
+			"origin": "project",
+			"_meta": { "trailingSlash": "ignore" }
+		}
+	},
+	{
+		"file": "",
+		"links": [],
+		"scripts": [],
+		"styles": [],
+		"routeData": {
 			"route": "/api/contact",
 			"isIndex": false,
 			"type": "endpoint",
@@ -293,6 +318,184 @@ var renderers = [Object.assign({
 		"scripts": [],
 		"styles": [],
 		"routeData": {
+			"route": "/certificates",
+			"isIndex": false,
+			"type": "page",
+			"pattern": "^\\/certificates\\/?$",
+			"segments": [[{
+				"content": "certificates",
+				"dynamic": false,
+				"spread": false
+			}]],
+			"params": [],
+			"component": "src/pages/certificates.astro",
+			"pathname": "/certificates",
+			"prerender": false,
+			"fallbackRoutes": [],
+			"distURL": [],
+			"origin": "project",
+			"_meta": { "trailingSlash": "ignore" }
+		}
+	},
+	{
+		"file": "",
+		"links": [],
+		"scripts": [],
+		"styles": [],
+		"routeData": {
+			"route": "/contact",
+			"isIndex": false,
+			"type": "page",
+			"pattern": "^\\/contact\\/?$",
+			"segments": [[{
+				"content": "contact",
+				"dynamic": false,
+				"spread": false
+			}]],
+			"params": [],
+			"component": "src/pages/contact.astro",
+			"pathname": "/contact",
+			"prerender": false,
+			"fallbackRoutes": [],
+			"distURL": [],
+			"origin": "project",
+			"_meta": { "trailingSlash": "ignore" }
+		}
+	},
+	{
+		"file": "",
+		"links": [],
+		"scripts": [],
+		"styles": [],
+		"routeData": {
+			"route": "/education",
+			"isIndex": false,
+			"type": "page",
+			"pattern": "^\\/education\\/?$",
+			"segments": [[{
+				"content": "education",
+				"dynamic": false,
+				"spread": false
+			}]],
+			"params": [],
+			"component": "src/pages/education.astro",
+			"pathname": "/education",
+			"prerender": false,
+			"fallbackRoutes": [],
+			"distURL": [],
+			"origin": "project",
+			"_meta": { "trailingSlash": "ignore" }
+		}
+	},
+	{
+		"file": "",
+		"links": [],
+		"scripts": [],
+		"styles": [],
+		"routeData": {
+			"route": "/experience",
+			"isIndex": false,
+			"type": "page",
+			"pattern": "^\\/experience\\/?$",
+			"segments": [[{
+				"content": "experience",
+				"dynamic": false,
+				"spread": false
+			}]],
+			"params": [],
+			"component": "src/pages/experience.astro",
+			"pathname": "/experience",
+			"prerender": false,
+			"fallbackRoutes": [],
+			"distURL": [],
+			"origin": "project",
+			"_meta": { "trailingSlash": "ignore" }
+		}
+	},
+	{
+		"file": "",
+		"links": [],
+		"scripts": [],
+		"styles": [],
+		"routeData": {
+			"route": "/projects/[slug]",
+			"isIndex": false,
+			"type": "page",
+			"pattern": "^\\/projects\\/([^/]+?)\\/?$",
+			"segments": [[{
+				"content": "projects",
+				"dynamic": false,
+				"spread": false
+			}], [{
+				"content": "slug",
+				"dynamic": true,
+				"spread": false
+			}]],
+			"params": ["slug"],
+			"component": "src/pages/projects/[slug].astro",
+			"prerender": false,
+			"fallbackRoutes": [],
+			"distURL": [],
+			"origin": "project",
+			"_meta": { "trailingSlash": "ignore" }
+		}
+	},
+	{
+		"file": "",
+		"links": [],
+		"scripts": [],
+		"styles": [],
+		"routeData": {
+			"route": "/projects",
+			"isIndex": false,
+			"type": "page",
+			"pattern": "^\\/projects\\/?$",
+			"segments": [[{
+				"content": "projects",
+				"dynamic": false,
+				"spread": false
+			}]],
+			"params": [],
+			"component": "src/pages/projects.astro",
+			"pathname": "/projects",
+			"prerender": false,
+			"fallbackRoutes": [],
+			"distURL": [],
+			"origin": "project",
+			"_meta": { "trailingSlash": "ignore" }
+		}
+	},
+	{
+		"file": "",
+		"links": [],
+		"scripts": [],
+		"styles": [],
+		"routeData": {
+			"route": "/skills",
+			"isIndex": false,
+			"type": "page",
+			"pattern": "^\\/skills\\/?$",
+			"segments": [[{
+				"content": "skills",
+				"dynamic": false,
+				"spread": false
+			}]],
+			"params": [],
+			"component": "src/pages/skills.astro",
+			"pathname": "/skills",
+			"prerender": false,
+			"fallbackRoutes": [],
+			"distURL": [],
+			"origin": "project",
+			"_meta": { "trailingSlash": "ignore" }
+		}
+	},
+	{
+		"file": "",
+		"links": [],
+		"scripts": [],
+		"styles": [],
+		"routeData": {
 			"route": "/",
 			"isIndex": true,
 			"type": "page",
@@ -311,19 +514,35 @@ var renderers = [Object.assign({
 ].map(deserializeRouteInfo);
 //#endregion
 //#region \0virtual:astro:pages
-var _page0 = () => import("./chunks/node_CAQWKkQd.mjs").then((n) => n.t);
-var _page1 = () => import("./chunks/contact_BIHmyY5I.mjs");
-var _page2 = () => import("./chunks/projects_wAoPNcMh.mjs");
-var _page3 = () => import("./chunks/index_Cd9XfdKa.mjs");
+var _page0 = () => import("./chunks/node_C39ibmT0.mjs").then((n) => n.t);
+var _page1 = () => import("./chunks/about_DbAWG9Hx.mjs");
+var _page2 = () => import("./chunks/contact_BIHmyY5I.mjs");
+var _page3 = () => import("./chunks/projects_wAoPNcMh.mjs");
+var _page4 = () => import("./chunks/certificates_CLooCZwJ.mjs");
+var _page5 = () => import("./chunks/contact_uBKmPC4l.mjs");
+var _page6 = () => import("./chunks/education_CjM6VNai.mjs");
+var _page7 = () => import("./chunks/experience_BUd2mzXI.mjs");
+var _page8 = () => import("./chunks/_slug__DjgMbilR.mjs");
+var _page9 = () => import("./chunks/projects_BuZRfggP.mjs");
+var _page10 = () => import("./chunks/skills_BtczumBV.mjs");
+var _page11 = () => import("./chunks/index_CnUnjX-5.mjs");
 var pageMap = /* @__PURE__ */ new Map([
 	["node_modules/astro/dist/assets/endpoint/node.js", _page0],
-	["src/pages/api/contact.ts", _page1],
-	["src/pages/api/projects.ts", _page2],
-	["src/pages/index.astro", _page3]
+	["src/pages/about.astro", _page1],
+	["src/pages/api/contact.ts", _page2],
+	["src/pages/api/projects.ts", _page3],
+	["src/pages/certificates.astro", _page4],
+	["src/pages/contact.astro", _page5],
+	["src/pages/education.astro", _page6],
+	["src/pages/experience.astro", _page7],
+	["src/pages/projects/[slug].astro", _page8],
+	["src/pages/projects.astro", _page9],
+	["src/pages/skills.astro", _page10],
+	["src/pages/index.astro", _page11]
 ]);
 //#endregion
 //#region \0virtual:astro:manifest
-var _manifest = deserializeManifest({"rootDir":"file:///D:/Project/learn-docker/","cacheDir":"file:///D:/Project/learn-docker/node_modules/.astro/","outDir":"file:///D:/Project/learn-docker/dist/","srcDir":"file:///D:/Project/learn-docker/src/","publicDir":"file:///D:/Project/learn-docker/public/","buildClientDir":"file:///D:/Project/learn-docker/dist/client/","buildServerDir":"file:///D:/Project/learn-docker/dist/server/","adapterName":"@astrojs/node","assetsDir":"_astro","routes":[{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"type":"page","component":"_server-islands.astro","params":["name"],"segments":[[{"content":"_server-islands","dynamic":false,"spread":false}],[{"content":"name","dynamic":true,"spread":false}]],"pattern":"^\\/_server-islands\\/([^/]+?)\\/?$","prerender":false,"isIndex":false,"fallbackRoutes":[],"route":"/_server-islands/[name]","origin":"internal","distURL":[],"_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/_image","component":"node_modules/astro/dist/assets/endpoint/node.js","params":[],"pathname":"/_image","pattern":"^\\/_image\\/?$","segments":[[{"content":"_image","dynamic":false,"spread":false}]],"type":"endpoint","prerender":false,"fallbackRoutes":[],"distURL":[],"isIndex":false,"origin":"internal","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/api/contact","isIndex":false,"type":"endpoint","pattern":"^\\/api\\/contact\\/?$","segments":[[{"content":"api","dynamic":false,"spread":false}],[{"content":"contact","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/api/contact.ts","pathname":"/api/contact","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/api/projects","isIndex":false,"type":"endpoint","pattern":"^\\/api\\/projects\\/?$","segments":[[{"content":"api","dynamic":false,"spread":false}],[{"content":"projects","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/api/projects.ts","pathname":"/api/projects","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"inline","content":"html,body{background-color:#f8fafc;font-family:Inter,sans-serif}\n"}],"routeData":{"route":"/","isIndex":true,"type":"page","pattern":"^\\/$","segments":[],"params":[],"component":"src/pages/index.astro","pathname":"/","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}}],"serverLike":true,"middlewareMode":"classic","base":"/","trailingSlash":"ignore","compressHTML":"jsx","componentMetadata":[["D:/Project/learn-docker/src/pages/index.astro",{"propagation":"none","containsHead":true}]],"renderers":[],"clientDirectives":[["idle","(()=>{var l=(n,t)=>{let i=async()=>{await(await n())()},e=typeof t.value==\"object\"?t.value:void 0,s={timeout:e==null?void 0:e.timeout};\"requestIdleCallback\"in window?window.requestIdleCallback(i,s):setTimeout(i,s.timeout||200)};(self.Astro||(self.Astro={})).idle=l;window.dispatchEvent(new Event(\"astro:idle\"));})();"],["load","(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event(\"astro:load\"));})();"],["media","(()=>{var n=(a,t)=>{let i=async()=>{await(await a())()};if(t.value){let e=matchMedia(t.value);e.matches?i():e.addEventListener(\"change\",i,{once:!0})}};(self.Astro||(self.Astro={})).media=n;window.dispatchEvent(new Event(\"astro:media\"));})();"],["only","(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event(\"astro:only\"));})();"],["visible","(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value==\"object\"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event(\"astro:visible\"));})();"]],"entryModules":{"\u0000noop-middleware":"virtual_astro_middleware.mjs","\u0000virtual:astro:server-island-manifest":"chunks/_virtual_astro_server-island-manifest_C1Q2srgE.mjs","\u0000virtual:astro:session-driver":"chunks/_virtual_astro_session-driver_DS5V7T-N.mjs","\u0000virtual:astro:actions/noop-entrypoint":"chunks/noop-entrypoint_Z3zFhrGC.mjs","@astrojs/node/server.js":"entry.mjs","\u0000virtual:astro:page:src/pages/api/contact@_@ts":"chunks/contact_BIHmyY5I.mjs","\u0000virtual:astro:page:src/pages/index@_@astro":"chunks/index_Cd9XfdKa.mjs","\u0000virtual:astro:page:node_modules/astro/dist/assets/endpoint/node@_@js":"chunks/node_CAQWKkQd.mjs","\u0000virtual:astro:page:src/pages/api/projects@_@ts":"chunks/projects_wAoPNcMh.mjs","D:/Project/learn-docker/node_modules/astro/dist/assets/services/sharp.js":"chunks/sharp_Dgv7Z49B.mjs","D:/Project/learn-docker/src/components/PortfolioDashboard.vue":"_astro/PortfolioDashboard.DsOwdh7s.js","@astrojs/vue/client.js":"_astro/client.C_qiofOZ.js","astro:scripts/before-hydration.js":""},"inlinedScripts":[],"assets":["/favicon.ico","/index.php","/robots.txt","/build/fonts-manifest.json","/build/manifest.json","/_astro/client.C_qiofOZ.js","/_astro/PortfolioDashboard.DsOwdh7s.js","/_astro/runtime-dom.esm-bundler.iVHFNdyU.js","/build/assets/app-BJhJ2F4L.js","/build/assets/app-Br7gK6oh.css","/build/assets/fonts-C9MNnjVw.css","/build/assets/instrument-sans-400-normal-D1W7dsQl.woff","/build/assets/instrument-sans-400-normal-DRC__1Mx.woff2","/build/assets/instrument-sans-500-normal-Dk9ku72i.woff2","/build/assets/instrument-sans-500-normal-Z6ESRlEs.woff","/build/assets/instrument-sans-600-normal-B7fBEWYG.woff2","/build/assets/instrument-sans-600-normal-B9e8oLYv.woff"],"buildFormat":"directory","checkOrigin":true,"actionBodySizeLimit":1048576,"serverIslandBodySizeLimit":1048576,"allowedDomains":[],"key":"zUylMQ911sHgtH+uNwk6aBNmZTEHkQLraYyOJr7xhTw=","sessionConfig":{"driver":"unstorage/drivers/fs-lite","options":{"base":"D:\\Project\\learn-docker\\node_modules\\.astro\\sessions"}},"image":{},"devToolbar":{"enabled":false,"debugInfoOutput":""},"logLevel":"info","shouldInjectCspMetaTags":false});
+var _manifest = deserializeManifest({"rootDir":"file:///D:/Project/learn-docker/","cacheDir":"file:///D:/Project/learn-docker/node_modules/.astro/","outDir":"file:///D:/Project/learn-docker/dist/","srcDir":"file:///D:/Project/learn-docker/src/","publicDir":"file:///D:/Project/learn-docker/public/","buildClientDir":"file:///D:/Project/learn-docker/dist/client/","buildServerDir":"file:///D:/Project/learn-docker/dist/server/","adapterName":"@astrojs/node","assetsDir":"_astro","routes":[{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"type":"page","component":"_server-islands.astro","params":["name"],"segments":[[{"content":"_server-islands","dynamic":false,"spread":false}],[{"content":"name","dynamic":true,"spread":false}]],"pattern":"^\\/_server-islands\\/([^/]+?)\\/?$","prerender":false,"isIndex":false,"fallbackRoutes":[],"route":"/_server-islands/[name]","origin":"internal","distURL":[],"_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/_image","component":"node_modules/astro/dist/assets/endpoint/node.js","params":[],"pathname":"/_image","pattern":"^\\/_image\\/?$","segments":[[{"content":"_image","dynamic":false,"spread":false}]],"type":"endpoint","prerender":false,"fallbackRoutes":[],"distURL":[],"isIndex":false,"origin":"internal","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"external","src":"_astro/Layout.BFOJ-nC0.css"}],"routeData":{"route":"/about","isIndex":false,"type":"page","pattern":"^\\/about\\/?$","segments":[[{"content":"about","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/about.astro","pathname":"/about","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/api/contact","isIndex":false,"type":"endpoint","pattern":"^\\/api\\/contact\\/?$","segments":[[{"content":"api","dynamic":false,"spread":false}],[{"content":"contact","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/api/contact.ts","pathname":"/api/contact","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/api/projects","isIndex":false,"type":"endpoint","pattern":"^\\/api\\/projects\\/?$","segments":[[{"content":"api","dynamic":false,"spread":false}],[{"content":"projects","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/api/projects.ts","pathname":"/api/projects","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"external","src":"_astro/Layout.BFOJ-nC0.css"}],"routeData":{"route":"/certificates","isIndex":false,"type":"page","pattern":"^\\/certificates\\/?$","segments":[[{"content":"certificates","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/certificates.astro","pathname":"/certificates","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"external","src":"_astro/Layout.BFOJ-nC0.css"}],"routeData":{"route":"/contact","isIndex":false,"type":"page","pattern":"^\\/contact\\/?$","segments":[[{"content":"contact","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/contact.astro","pathname":"/contact","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"external","src":"_astro/Layout.BFOJ-nC0.css"}],"routeData":{"route":"/education","isIndex":false,"type":"page","pattern":"^\\/education\\/?$","segments":[[{"content":"education","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/education.astro","pathname":"/education","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"external","src":"_astro/Layout.BFOJ-nC0.css"}],"routeData":{"route":"/experience","isIndex":false,"type":"page","pattern":"^\\/experience\\/?$","segments":[[{"content":"experience","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/experience.astro","pathname":"/experience","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"external","src":"_astro/Layout.BFOJ-nC0.css"}],"routeData":{"route":"/projects/[slug]","isIndex":false,"type":"page","pattern":"^\\/projects\\/([^/]+?)\\/?$","segments":[[{"content":"projects","dynamic":false,"spread":false}],[{"content":"slug","dynamic":true,"spread":false}]],"params":["slug"],"component":"src/pages/projects/[slug].astro","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"external","src":"_astro/Layout.BFOJ-nC0.css"}],"routeData":{"route":"/projects","isIndex":false,"type":"page","pattern":"^\\/projects\\/?$","segments":[[{"content":"projects","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/projects.astro","pathname":"/projects","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"external","src":"_astro/Layout.BFOJ-nC0.css"}],"routeData":{"route":"/skills","isIndex":false,"type":"page","pattern":"^\\/skills\\/?$","segments":[[{"content":"skills","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/skills.astro","pathname":"/skills","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[{"type":"external","src":"_astro/Layout.BFOJ-nC0.css"}],"routeData":{"route":"/","isIndex":true,"type":"page","pattern":"^\\/$","segments":[],"params":[],"component":"src/pages/index.astro","pathname":"/","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}}],"serverLike":true,"middlewareMode":"classic","base":"/","trailingSlash":"ignore","compressHTML":"jsx","componentMetadata":[["D:/Project/learn-docker/src/pages/about.astro",{"propagation":"none","containsHead":true}],["D:/Project/learn-docker/src/pages/certificates.astro",{"propagation":"none","containsHead":true}],["D:/Project/learn-docker/src/pages/contact.astro",{"propagation":"none","containsHead":true}],["D:/Project/learn-docker/src/pages/education.astro",{"propagation":"none","containsHead":true}],["D:/Project/learn-docker/src/pages/experience.astro",{"propagation":"none","containsHead":true}],["D:/Project/learn-docker/src/pages/index.astro",{"propagation":"none","containsHead":true}],["D:/Project/learn-docker/src/pages/projects.astro",{"propagation":"none","containsHead":true}],["D:/Project/learn-docker/src/pages/projects/[slug].astro",{"propagation":"none","containsHead":true}],["D:/Project/learn-docker/src/pages/skills.astro",{"propagation":"none","containsHead":true}]],"renderers":[],"clientDirectives":[["idle","(()=>{var l=(n,t)=>{let i=async()=>{await(await n())()},e=typeof t.value==\"object\"?t.value:void 0,s={timeout:e==null?void 0:e.timeout};\"requestIdleCallback\"in window?window.requestIdleCallback(i,s):setTimeout(i,s.timeout||200)};(self.Astro||(self.Astro={})).idle=l;window.dispatchEvent(new Event(\"astro:idle\"));})();"],["load","(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event(\"astro:load\"));})();"],["media","(()=>{var n=(a,t)=>{let i=async()=>{await(await a())()};if(t.value){let e=matchMedia(t.value);e.matches?i():e.addEventListener(\"change\",i,{once:!0})}};(self.Astro||(self.Astro={})).media=n;window.dispatchEvent(new Event(\"astro:media\"));})();"],["only","(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event(\"astro:only\"));})();"],["visible","(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value==\"object\"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event(\"astro:visible\"));})();"]],"entryModules":{"\u0000noop-middleware":"virtual_astro_middleware.mjs","\u0000virtual:astro:server-island-manifest":"chunks/_virtual_astro_server-island-manifest_C1Q2srgE.mjs","\u0000virtual:astro:session-driver":"chunks/_virtual_astro_session-driver_DS5V7T-N.mjs","\u0000virtual:astro:actions/noop-entrypoint":"chunks/noop-entrypoint_Z3zFhrGC.mjs","@astrojs/node/server.js":"entry.mjs","\u0000virtual:astro:page:src/pages/projects/[slug]@_@astro":"chunks/_slug__DjgMbilR.mjs","\u0000virtual:astro:page:src/pages/about@_@astro":"chunks/about_DbAWG9Hx.mjs","\u0000virtual:astro:page:src/pages/certificates@_@astro":"chunks/certificates_CLooCZwJ.mjs","\u0000virtual:astro:page:src/pages/api/contact@_@ts":"chunks/contact_BIHmyY5I.mjs","\u0000virtual:astro:page:src/pages/contact@_@astro":"chunks/contact_uBKmPC4l.mjs","\u0000virtual:astro:page:src/pages/education@_@astro":"chunks/education_CjM6VNai.mjs","\u0000virtual:astro:page:src/pages/experience@_@astro":"chunks/experience_BUd2mzXI.mjs","\u0000virtual:astro:page:src/pages/index@_@astro":"chunks/index_CnUnjX-5.mjs","\u0000virtual:astro:page:node_modules/astro/dist/assets/endpoint/node@_@js":"chunks/node_C39ibmT0.mjs","\u0000virtual:astro:page:src/pages/projects@_@astro":"chunks/projects_BuZRfggP.mjs","\u0000virtual:astro:page:src/pages/api/projects@_@ts":"chunks/projects_wAoPNcMh.mjs","D:/Project/learn-docker/node_modules/astro/dist/assets/services/sharp.js":"chunks/sharp_CWFFNjrK.mjs","\u0000virtual:astro:page:src/pages/skills@_@astro":"chunks/skills_BtczumBV.mjs","D:/Project/learn-docker/src/components/CertificateGrid.vue":"_astro/CertificateGrid.CNUZ7hpf.js","D:/Project/learn-docker/src/components/ContactForm.vue":"_astro/ContactForm.YO0TL5pG.js","D:/Project/learn-docker/src/components/EducationList.vue":"_astro/EducationList.D8WHN71G.js","D:/Project/learn-docker/src/components/ExperienceList.vue":"_astro/ExperienceList.Ai-CAxqu.js","D:/Project/learn-docker/src/layouts/Layout.astro?astro&type=script&index=0&lang.ts":"_astro/Layout.astro_astro_type_script_index_0_lang.BSVenEnw.js","D:/Project/learn-docker/src/components/ProjectDetail.vue":"_astro/ProjectDetail.CrGyX_fL.js","D:/Project/learn-docker/src/components/ProjectGrid.vue":"_astro/ProjectGrid.YuzVmfUM.js","D:/Project/learn-docker/src/components/SkillsView.vue":"_astro/SkillsView.aGh3Nqrr.js","@astrojs/vue/client.js":"_astro/client.BgxL5oyl.js","D:/Project/learn-docker/src/pages/index.astro?astro&type=script&index=0&lang.ts":"_astro/index.astro_astro_type_script_index_0_lang.PCe51VuN.js","astro:scripts/before-hydration.js":""},"inlinedScripts":[["D:/Project/learn-docker/src/layouts/Layout.astro?astro&type=script&index=0&lang.ts","try{fetch(`http://localhost:8000/api/analytics/view`,{method:`POST`,headers:{\"Content-Type\":`application/json`},body:JSON.stringify({page:window.location.pathname,referrer:document.referrer||null})}).catch(()=>{})}catch{}"],["D:/Project/learn-docker/src/pages/index.astro?astro&type=script&index=0&lang.ts","var e=[{bg:`bg-[#C8B6FF]/25`,border:`border-[#C8B6FF]`,text:`text-[#24252A]`},{bg:`bg-[#A9D6E5]/30`,border:`border-[#A9D6E5]`,text:`text-[#24252A]`},{bg:`bg-[#B8E0D2]/35`,border:`border-[#B8E0D2]`,text:`text-[#24252A]`},{bg:`bg-[#FFD6BA]/35`,border:`border-[#FFD6BA]`,text:`text-[#24252A]`}];async function t(){try{let t=(await(await fetch(`http://localhost:8000/api/projects?featured=true&per_page=4`)).json()).data??[],n=document.getElementById(`featured-projects`);if(!t.length||!n)return;n.innerHTML=t.map((t,n)=>{let r=e[n%e.length];return`\n\t\t\t\t\t\t<a href=\"/projects/${t.slug}\" class=\"glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer\">\n\t\t\t\t\t\t\t<div class=\"space-y-3\">\n\t\t\t\t\t\t\t\t<div class=\"flex justify-between items-center technical-label\">\n\t\t\t\t\t\t\t\t\t<span class=\"px-2.5 py-0.5 rounded-full ${r.bg} ${r.border} ${r.text} border font-medium\">\n\t\t\t\t\t\t\t\t\t\t${t.category}\n\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t\t<span class=\"text-[#686A73]\">${t.year}</span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<h3 class=\"card-heading group-hover:text-[#7f5be8] transition-colors\">\n\t\t\t\t\t\t\t\t\t${t.title}\n\t\t\t\t\t\t\t\t</h3>\n\t\t\t\t\t\t\t\t<p class=\"small-text line-clamp-3\">\n\t\t\t\t\t\t\t\t\t${t.short_description??``}\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"pt-4 mt-4 border-t border-[#686A73]/15\">\n\t\t\t\t\t\t\t\t<div class=\"flex flex-wrap gap-1.5\">\n\t\t\t\t\t\t\t\t\t${(t.technologies??[]).map(e=>`<span class=\"technical-label text-[11px] px-2 py-0.5 rounded-md bg-white/70 text-[#24252A] border border-white\">${e.name}</span>`).join(``)}\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t`}).join(``)}catch(e){console.warn(`API not reachable for featured projects`,e)}}t();"]],"assets":["/favicon.ico","/fonts-manifest.dev.json","/hot","/index.php","/robots.txt","/build/fonts-manifest.json","/build/manifest.json","/_astro/CertificateGrid.CNUZ7hpf.js","/_astro/client.BgxL5oyl.js","/_astro/ContactForm.YO0TL5pG.js","/_astro/EducationList.D8WHN71G.js","/_astro/ExperienceList.Ai-CAxqu.js","/_astro/ProjectDetail.CrGyX_fL.js","/_astro/ProjectGrid.YuzVmfUM.js","/_astro/runtime-core.esm-bundler.DuqlExzL.js","/_astro/runtime-dom.esm-bundler.CC_Qnrvv.js","/_astro/SkillsView.aGh3Nqrr.js","/_astro/_plugin-vue_export-helper.BDNMzG2s.js","/build/assets/app-BJhJ2F4L.js","/build/assets/app-Br7gK6oh.css","/build/assets/fonts-C9MNnjVw.css","/build/assets/instrument-sans-400-normal-D1W7dsQl.woff","/build/assets/instrument-sans-400-normal-DRC__1Mx.woff2","/build/assets/instrument-sans-500-normal-Dk9ku72i.woff2","/build/assets/instrument-sans-500-normal-Z6ESRlEs.woff","/build/assets/instrument-sans-600-normal-B7fBEWYG.woff2","/build/assets/instrument-sans-600-normal-B9e8oLYv.woff","/_astro/Layout.BFOJ-nC0.css"],"buildFormat":"directory","checkOrigin":true,"actionBodySizeLimit":1048576,"serverIslandBodySizeLimit":1048576,"allowedDomains":[],"key":"AaRV2xVdmZBdb4YYW7EmQL4OyLJnlIIUJr0qTFmGqRM=","sessionConfig":{"driver":"unstorage/drivers/fs-lite","options":{"base":"D:\\Project\\learn-docker\\node_modules\\.astro\\sessions"}},"image":{},"devToolbar":{"enabled":false,"debugInfoOutput":""},"logLevel":"info","shouldInjectCspMetaTags":false});
 var manifestRoutes = _manifest.routes;
 var manifest = Object.assign(_manifest, {
 	renderers,
@@ -541,10 +760,7 @@ function deserializeActionResult(res) {
 			"PROD": true,
 			"SITE": void 0,
 			"SSR": true
-		}, {
-			OS: "Windows_NT",
-			Path: "D:\\Project\\learn-docker\\node_modules\\.bin;D:\\Project\\learn-docker\\node_modules\\.bin;D:\\Project\\node_modules\\.bin;D:\\node_modules\\.bin;C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\@npmcli\\run-script\\lib\\node-gyp-bin;c:\\Users\\KAWS\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand;c:\\Users\\KAWS\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Users\\KAWS\\AppData\\Local\\nvm;C:\\nvm4w\\nodejs;C:\\Program Files\\nodejs\\;C:\\Program Files\\Java\\jdk-25\\bin;C:\\Program Files\\Git\\cmd;%JAVA_HOME%\\bin;;C:\\Program Files\\Go\\bin;C:\\Program Files\\Cloudflare\\Cloudflare WARP\\;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Users\\KAWS\\.local\\bin;C:\\Users\\KAWS\\scoop\\shims;C:\\Users\\KAWS\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\KAWS\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\KAWS\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\KAWS\\AppData\\Local\\nvm;C:\\nvm4w\\nodejs;C:\\Users\\KAWS\\AppData\\Roaming\\npm;C:\\Users\\KAWS\\AppData\\Local\\Programs\\Python\\Python313\\;C:\\Users\\KAWS\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\;C:\\Users\\KAWS\\go\\bin;C:\\Program Files\\JetBrains\\PyCharm 2026.1\\bin;C:\\Users\\KAWS\\AppData\\Local\\Programs\\Ollama;C:\\Users\\KAWS\\AppData\\Local\\Programs\\Antigravity IDE\\bin;C:\\Users\\KAWS\\AppData\\Local\\Programs\\MiKTeX\\miktex\\bin\\x64\\;C:\\Users\\KAWS\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
-		})?.PROD) return {
+		}, { OS: "Windows_NT" })?.PROD) return {
 			error: ActionError.fromJson(json),
 			data: void 0
 		};
@@ -5126,7 +5342,7 @@ var _virtual_astro_node_config_exports = /* @__PURE__ */ __exportAll({
 	bodySizeLimit: () => bodySizeLimit,
 	client: () => client,
 	experimentalDisableStreaming: () => false,
-	host: () => false,
+	host: () => true,
 	mode: () => mode,
 	port: () => port,
 	server: () => server,

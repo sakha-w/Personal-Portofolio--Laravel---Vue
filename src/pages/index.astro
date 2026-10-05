@@ -2,44 +2,63 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Sakha Wibisono | Informatics Fresh Graduate & Software Engineer Portfolio" description="Personal technical portfolio of Sakha Wibisono — Informatics graduate and software developer.">
-	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-10">
-		<!-- Hero -->
-		<section class="glass rounded-2xl p-8 sm:p-12">
-			<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-				<div>
-					<span class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Informatics Graduate & Software Engineer</span>
-					<h1 class="text-4xl sm:text-5xl font-extrabold text-white mt-2 leading-tight">
-						Sakha <span class="text-indigo-400">Wibisono</span>
+<Layout title="Sakha Wibisono | Informatics Graduate & Software Engineer" description="Personal technical portfolio and engineering showcase of Sakha Wibisono.">
+	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10 space-y-12">
+		<!-- Hero Section -->
+		<section class="glass-card rounded-3xl p-6 sm:p-12 relative overflow-hidden">
+			<div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+				<div class="max-w-2xl space-y-5">
+					<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C8B6FF]/25 border border-[#C8B6FF] text-[#24252A] technical-label">
+						<span class="w-1.5 h-1.5 rounded-full bg-[#8d6ee8]"></span>
+						<span>Informatics Graduate · Full-Stack Developer</span>
+					</div>
+
+					<h1 class="hero-heading">
+						Crafting software with <span class="text-[#7f5be8]">clarity</span> & precision.
 					</h1>
-					<p class="text-slate-300 text-base sm:text-lg leading-relaxed mt-4 max-w-2xl">
-						Fresh graduate in Informatics from Telkom University with hands-on experience in software
-						development through internships and organizational activities. Proficient in Frontend
-						Development, JavaScript, ReactJS, API Integration, and modern web development technologies.
+
+					<p class="body-text max-w-xl">
+						Fresh graduate in Informatics from <strong class="text-[#24252A] font-semibold">Telkom University</strong> with practical experience across enterprise environments (Peruri, PuTI Telkom). Specializing in modern frontend architecture, RESTful services with Laravel, and scalable databases.
 					</p>
-					<div class="flex flex-wrap gap-3 mt-6">
-						<a href="/projects" class="px-5 py-2.5 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-500 transition">View Projects</a>
-						<a href="/contact" class="px-5 py-2.5 rounded-lg glass text-slate-100 border border-white/10 hover:border-indigo-500/50 transition">Contact Me</a>
+
+					<div class="flex flex-wrap items-center gap-3 pt-2">
+						<a href="/projects" class="px-5 py-2.5 rounded-full glass-button-primary text-xs sm:text-sm tracking-wide flex items-center gap-2">
+							<span>Explore Projects</span>
+							<span class="technical-label">→</span>
+						</a>
+						<a href="/contact" class="px-5 py-2.5 rounded-full glass-button-secondary text-xs sm:text-sm font-medium">
+							Get in Touch
+						</a>
+						<a href="https://github.com/sakha-wibisono" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 rounded-full glass-subtle text-[#686A73] hover:text-[#24252A] transition-colors technical-label flex items-center gap-1.5">
+							<span>GitHub</span>
+							<span class="text-[10px]">↗</span>
+						</a>
 					</div>
 				</div>
-				<div class="hidden md:block text-right">
-					<div class="glass rounded-xl p-6 max-w-xs">
-						<div class="grid grid-cols-2 gap-4 text-center">
-							<div>
-								<p class="text-3xl font-extrabold text-white">3+</p>
-								<p class="text-xs text-slate-400">Internships</p>
+
+				<!-- Highlights Metric Glasscard -->
+				<div class="w-full lg:w-auto shrink-0">
+					<div class="glass-subtle rounded-2xl p-5 sm:p-6 lg:max-w-xs border border-white/80">
+						<div class="flex items-center justify-between pb-3 mb-3 border-b border-[#686A73]/15 technical-label text-[#686A73]">
+							<span>SYSTEM_METRICS</span>
+							<span class="text-[#3b8c72] font-semibold">STATUS: 200 OK</span>
+						</div>
+						<div class="grid grid-cols-2 gap-3 text-left">
+							<div class="p-3 rounded-xl bg-white/60 border border-white">
+								<p class="text-2xl sm:text-3xl font-bold font-mono text-[#24252A]">3+</p>
+								<p class="text-[11px] text-[#686A73] uppercase tracking-wider mt-0.5 font-medium">Internships</p>
 							</div>
-							<div>
-								<p class="text-3xl font-extrabold text-white">5</p>
-								<p class="text-xs text-slate-400">Projects</p>
+							<div class="p-3 rounded-xl bg-white/60 border border-white">
+								<p class="text-2xl sm:text-3xl font-bold font-mono text-[#24252A]">3.67</p>
+								<p class="text-[11px] text-[#686A73] uppercase tracking-wider mt-0.5 font-medium">Top GPA</p>
 							</div>
-							<div>
-								<p class="text-3xl font-extrabold text-white">5</p>
-								<p class="text-xs text-slate-400">Certificates</p>
+							<div class="p-3 rounded-xl bg-white/60 border border-white">
+								<p class="text-2xl sm:text-3xl font-bold font-mono text-[#24252A]">5</p>
+								<p class="text-[11px] text-[#686A73] uppercase tracking-wider mt-0.5 font-medium">Certificates</p>
 							</div>
-							<div>
-								<p class="text-3xl font-extrabold text-white">24</p>
-								<p class="text-xs text-slate-400">Technologies</p>
+							<div class="p-3 rounded-xl bg-white/60 border border-white">
+								<p class="text-2xl sm:text-3xl font-bold font-mono text-[#24252A]">24+</p>
+								<p class="text-[11px] text-[#686A73] uppercase tracking-wider mt-0.5 font-medium">Technologies</p>
 							</div>
 						</div>
 					</div>
@@ -47,95 +66,170 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</section>
 
-		<!-- Featured Projects -->
-		<section>
-			<div class="flex justify-between items-center mb-6">
-				<h2 class="text-2xl font-bold text-white">Featured Projects</h2>
-				<a href="/projects" class="text-sm text-indigo-400 hover:text-indigo-300">View all →</a>
+		<!-- Featured Projects Section with Pastel Accents -->
+		<section class="space-y-6">
+			<div class="flex items-end justify-between border-b border-[#686A73]/15 pb-4">
+				<div>
+					<span class="technical-label uppercase text-[#7f5be8] tracking-wider block font-semibold">// ENGINEERING_SHOWCASE</span>
+					<h2 class="section-heading mt-1">Featured Projects</h2>
+				</div>
+				<a href="/projects" class="technical-label text-[#7f5be8] hover:opacity-80 transition-opacity flex items-center gap-1 font-medium">
+					<span>View all projects</span>
+					<span>→</span>
+				</a>
 			</div>
+
+			<!-- Dynamic Container Hydrated with Lavender, Blue, Mint, Peach Colors -->
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="featured-projects">
-				<div class="glass rounded-2xl p-6 animate-pulse">
-					<div class="h-4 bg-white/10 rounded w-3/4 mb-4"></div>
-					<div class="h-4 bg-white/10 rounded w-1/2 mb-2"></div>
-					<div class="h-3 bg-white/10 rounded w-full"></div>
+				<!-- Skeletons with soft glass styling -->
+				<div class="glass-card rounded-2xl p-6 min-h-[220px] flex flex-col justify-between animate-pulse">
+					<div class="space-y-3">
+						<div class="h-4 bg-[#686A73]/10 rounded w-1/3"></div>
+						<div class="h-6 bg-[#686A73]/15 rounded w-3/4"></div>
+						<div class="h-3 bg-[#686A73]/10 rounded w-full"></div>
+					</div>
+					<div class="h-5 bg-[#686A73]/10 rounded w-1/2 pt-4"></div>
 				</div>
-				<div class="glass rounded-2xl p-6 animate-pulse">
-					<div class="h-4 bg-white/10 rounded w-3/4 mb-4"></div>
-					<div class="h-4 bg-white/10 rounded w-1/2 mb-2"></div>
-					<div class="h-3 bg-white/10 rounded w-full"></div>
+				<div class="glass-card rounded-2xl p-6 min-h-[220px] flex flex-col justify-between animate-pulse">
+					<div class="space-y-3">
+						<div class="h-4 bg-[#686A73]/10 rounded w-1/3"></div>
+						<div class="h-6 bg-[#686A73]/15 rounded w-3/4"></div>
+						<div class="h-3 bg-[#686A73]/10 rounded w-full"></div>
+					</div>
+					<div class="h-5 bg-[#686A73]/10 rounded w-1/2 pt-4"></div>
 				</div>
-				<div class="glass rounded-2xl p-6 animate-pulse">
-					<div class="h-4 bg-white/10 rounded w-3/4 mb-4"></div>
-					<div class="h-4 bg-white/10 rounded w-1/2 mb-2"></div>
-					<div class="h-3 bg-white/10 rounded w-full"></div>
+				<div class="glass-card rounded-2xl p-6 min-h-[220px] flex flex-col justify-between animate-pulse">
+					<div class="space-y-3">
+						<div class="h-4 bg-[#686A73]/10 rounded w-1/3"></div>
+						<div class="h-6 bg-[#686A73]/15 rounded w-3/4"></div>
+						<div class="h-3 bg-[#686A73]/10 rounded w-full"></div>
+					</div>
+					<div class="h-5 bg-[#686A73]/10 rounded w-1/2 pt-4"></div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Quick Links -->
-		<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
-			<a href="/experience" class="glass rounded-xl p-6 hover:border-indigo-500/40 transition">
-				<p class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Experience</p>
-				<h3 class="font-bold text-white mt-1">3 Internships</h3>
-				<p class="text-xs text-slate-400 mt-1">Peruri, Asah by Dicoding, PuTI Telkom</p>
-			</a>
-			<a href="/skills" class="glass rounded-xl p-6 hover:border-indigo-500/40 transition">
-				<p class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Skills</p>
-				<h3 class="font-bold text-white mt-1">24 Technologies</h3>
-				<p class="text-xs text-slate-400 mt-1">Frontend, Backend, Data, Tools</p>
-			</a>
-			<a href="/education" class="glass rounded-xl p-6 hover:border-indigo-500/40 transition">
-				<p class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Education</p>
-				<h3 class="font-bold text-white mt-1">2 Degrees</h3>
-				<p class="text-xs text-slate-400 mt-1">Bachelor + Diploma from Telkom University</p>
-			</a>
-			<a href="/certificates" class="glass rounded-xl p-6 hover:border-indigo-500/40 transition">
-				<p class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Certificates</p>
-				<h3 class="font-bold text-white mt-1">5 Certifications</h3>
-				<p class="text-xs text-slate-400 mt-1">Dicoding & Coursera</p>
-			</a>
+		<!-- Overview Hub Navigation -->
+		<section class="space-y-4">
+			<div class="border-b border-[#686A73]/15 pb-3">
+				<span class="technical-label uppercase text-[#686A73]">QUICK_ACCESS_MODULES</span>
+			</div>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+				<a href="/experience" class="glass-card rounded-2xl p-5 group flex flex-col justify-between">
+					<div>
+						<div class="flex items-center justify-between technical-label text-[#7f5be8]">
+							<span>TIMELINE</span>
+							<span class="group-hover:translate-x-1 transition-transform">→</span>
+						</div>
+						<h3 class="card-heading mt-2">Work Experience</h3>
+						<p class="small-text mt-1">Peruri, Asah by Dicoding, and PuTI Telkom University.</p>
+					</div>
+					<span class="mt-4 technical-label text-[#686A73] text-[11px]">3 Internships Recorded</span>
+				</a>
+
+				<a href="/skills" class="glass-card rounded-2xl p-5 group flex flex-col justify-between">
+					<div>
+						<div class="flex items-center justify-between technical-label text-[#3b8c72]">
+							<span>TOOLKIT</span>
+							<span class="group-hover:translate-x-1 transition-transform">→</span>
+						</div>
+						<h3 class="card-heading mt-2">Skills & Stacks</h3>
+						<p class="small-text mt-1">Frontend, Backend API, Machine Learning, and DevOps tools.</p>
+					</div>
+					<span class="mt-4 technical-label text-[#686A73] text-[11px]">24 Technologies Classified</span>
+				</a>
+
+				<a href="/education" class="glass-card rounded-2xl p-5 group flex flex-col justify-between">
+					<div>
+						<div class="flex items-center justify-between technical-label text-[#2b7e9b]">
+							<span>ACADEMIC</span>
+							<span class="group-hover:translate-x-1 transition-transform">→</span>
+						</div>
+						<h3 class="card-heading mt-2">Education</h3>
+						<p class="small-text mt-1">S1 Informatics and D3 Software Application Engineering.</p>
+					</div>
+					<span class="mt-4 technical-label text-[#686A73] text-[11px]">Telkom University</span>
+				</a>
+
+				<a href="/certificates" class="glass-card rounded-2xl p-5 group flex flex-col justify-between">
+					<div>
+						<div class="flex items-center justify-between technical-label text-[#c26d36]">
+							<span>CREDENTIALS</span>
+							<span class="group-hover:translate-x-1 transition-transform">→</span>
+						</div>
+						<h3 class="card-heading mt-2">Certifications</h3>
+						<p class="small-text mt-1">Dicoding Academy and Google Professional certifications.</p>
+					</div>
+					<span class="mt-4 technical-label text-[#686A73] text-[11px]">5 Validated Badges</span>
+				</a>
+			</div>
 		</section>
 
-		<!-- CTA -->
-		<section class="glass rounded-2xl p-8 text-center border border-indigo-500/30">
-			<h2 class="text-2xl font-bold text-white">Ready to Collaborate?</h2>
-			<p class="text-slate-300 mt-2 max-w-xl mx-auto">
-				I'm open to opportunities — full-time roles, internships, or freelance projects.
-				Let's build something great together.
-			</p>
-			<a href="/contact" class="mt-6 inline-block px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-500 transition">Get In Touch →</a>
+		<!-- Call to Action Banner -->
+		<section class="glass-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden border border-[#C8B6FF]/60">
+			<div class="max-w-xl mx-auto space-y-4">
+				<span class="inline-block px-3 py-1 rounded-full bg-[#C8B6FF]/30 text-[#24252A] technical-label border border-[#C8B6FF]">
+					INITIATE CONTACT
+				</span>
+				<h2 class="section-heading">Interested in collaborating?</h2>
+				<p class="body-text">
+					Whether you are looking for a full-time software engineer, internship candidate, or technical collaborator, my inbox is open.
+				</p>
+				<div class="pt-2">
+					<a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-button-primary text-xs sm:text-sm font-semibold tracking-wide">
+						<span>Send a Direct Message</span>
+						<span class="technical-label">→</span>
+					</a>
+				</div>
+			</div>
 		</section>
 	</main>
 
 	<script>
-		// Fetch featured projects from API and render
+		// Project Accents: 01 Lavender, 02 Blue, 03 Mint, 04 Peach
+		const projectStyles = [
+			{ bg: 'bg-[#C8B6FF]/25', border: 'border-[#C8B6FF]', text: 'text-[#24252A]' },
+			{ bg: 'bg-[#A9D6E5]/30', border: 'border-[#A9D6E5]', text: 'text-[#24252A]' },
+			{ bg: 'bg-[#B8E0D2]/35', border: 'border-[#B8E0D2]', text: 'text-[#24252A]' },
+			{ bg: 'bg-[#FFD6BA]/35', border: 'border-[#FFD6BA]', text: 'text-[#24252A]' },
+		];
+
 		async function loadFeatured() {
 			try {
-				const res = await fetch('http://localhost:8000/api/projects?featured=true&per_page=3');
+				const res = await fetch('http://localhost:8000/api/projects?featured=true&per_page=4');
 				const json = await res.json();
 				const projects = json.data ?? [];
 				const container = document.getElementById('featured-projects');
 				if (!projects.length || !container) return;
 
-				container.innerHTML = projects.map(p => `
-					<a href="/projects/${p.slug}" class="glass rounded-2xl p-6 flex flex-col justify-between hover:border-indigo-500/40 transition">
-						<div class="space-y-3">
-							<div class="flex justify-between items-start">
-								<span class="text-xs px-2 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">${p.category}</span>
-								<span class="text-xs text-slate-500">${p.year}</span>
+				container.innerHTML = projects.map((p, index) => {
+					const style = projectStyles[index % projectStyles.length];
+					return `
+						<a href="/projects/${p.slug}" class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer">
+							<div class="space-y-3">
+								<div class="flex justify-between items-center technical-label">
+									<span class="px-2.5 py-0.5 rounded-full ${style.bg} ${style.border} ${style.text} border font-medium">
+										${p.category}
+									</span>
+									<span class="text-[#686A73]">${p.year}</span>
+								</div>
+								<h3 class="card-heading group-hover:text-[#7f5be8] transition-colors">
+									${p.title}
+								</h3>
+								<p class="small-text line-clamp-3">
+									${p.short_description ?? ''}
+								</p>
 							</div>
-							<h3 class="font-bold text-white">${p.title}</h3>
-							<p class="text-xs text-slate-400 leading-relaxed">${p.short_description ?? ''}</p>
-						</div>
-						<div class="pt-4 mt-4 border-t border-white/10">
-							<div class="flex flex-wrap gap-1">
-								${(p.technologies ?? []).map(t => `<span class="text-xs px-2 py-0.5 rounded-full bg-white/5 text-slate-300 border border-white/10">${t.name}</span>`).join('')}
+							<div class="pt-4 mt-4 border-t border-[#686A73]/15">
+								<div class="flex flex-wrap gap-1.5">
+									${(p.technologies ?? []).map(t => `<span class="technical-label text-[11px] px-2 py-0.5 rounded-md bg-white/70 text-[#24252A] border border-white">${t.name}</span>`).join('')}
+								</div>
 							</div>
-						</div>
-					</a>
-				`).join('');
+						</a>
+					`;
+				}).join('');
 			} catch (e) {
-				console.warn('Failed to load featured projects', e);
+				console.warn('API not reachable for featured projects', e);
 			}
 		}
 		loadFeatured();

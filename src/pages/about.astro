@@ -3,69 +3,148 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="About | Sakha Wibisono" description="Profile, career journey, and technical interests of Sakha Wibisono.">
-	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-8">
-		<section class="glass rounded-2xl p-8">
-			<span class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Profile</span>
-			<h1 class="text-3xl font-extrabold text-white mt-2">Sakha Wibisono</h1>
-			<p class="text-slate-400 text-sm mt-1">Informatics Fresh Graduate & Software Engineer — Bandung, Indonesia</p>
-			<p class="text-slate-300 text-sm sm:text-base leading-relaxed mt-4">
-				Fresh graduate in Informatics from Telkom University with hands-on experience in software
-				development through internships and organizational activities. Proficient in Frontend
-				Development, JavaScript, ReactJS, API Integration, and modern web development technologies.
-				Experienced in developing responsive and user-friendly applications, collaborating with teams,
-				and adapting to new technologies and development environments. Continuously expanding
-				knowledge and skills in Data Science.
-			</p>
-			<div class="flex flex-wrap gap-3 mt-6 text-sm">
-				<a href="mailto:sakhawibisono77@gmail.com" class="px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium">Email Me</a>
-				<a href="https://linkedin.com/in/sakha-wibisono" target="_blank" class="px-4 py-2 rounded-lg glass text-slate-200">LinkedIn ↗</a>
-				<a href="https://github.com/sakha-wibisono" target="_blank" class="px-4 py-2 rounded-lg glass text-slate-200">GitHub ↗</a>
-			</div>
-		</section>
-
-		<section class="glass rounded-2xl p-8">
-			<span class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Career Journey</span>
-			<div class="mt-4 space-y-4 text-sm">
-				<div class="border-l-2 border-indigo-500 pl-4">
-					<p class="font-bold text-white">Bachelor of Informatics — Telkom University</p>
-					<p class="text-slate-400">2024 – 2026 · GPA 3.50/4.00 · Generative AI thesis</p>
+	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10 space-y-10">
+		<!-- Profile Card -->
+		<section class="glass-card rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+			<div class="space-y-4">
+				<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C8B6FF]/25 border border-[#C8B6FF] text-[#24252A] technical-label">
+					<span>BIOGRAPHY // PROFILE</span>
 				</div>
-				<div class="border-l-2 border-emerald-500 pl-4">
-					<p class="font-bold text-white">Diploma in Software Application Engineering — Telkom University</p>
-					<p class="text-slate-400">2021 – 2024 · GPA 3.67/4.00 · MedRecordX thesis</p>
-				</div>
-				<div class="border-l-2 border-amber-500 pl-4">
-					<p class="font-bold text-white">Programmer Internship — Perum Peruri</p>
-					<p class="text-slate-400">2026 · SSO frontend with Astro + Vue.js, OAuth 2.0 / OIDC</p>
-				</div>
-				<div class="border-l-2 border-sky-500 pl-4">
-					<p class="font-bold text-white">Programmer Apprenticeship — Asah by Dicoding</p>
-					<p class="text-slate-400">2025 – 2026 · Predictive lead scoring with React + Supabase</p>
-				</div>
-				<div class="border-l-2 border-violet-500 pl-4">
-					<p class="font-bold text-white">Frontend Programmer Intern — Direktorat PuTI Telkom University</p>
-					<p class="text-slate-400">2024 · T-Feeder academic system with AngularJS</p>
+				<h1 class="hero-heading">Sakha Wibisono</h1>
+				<p class="technical-label text-[#686A73]">
+					Informatics Graduate & Software Engineer · Bandung, Indonesia
+				</p>
+				<p class="body-text max-w-3xl">
+					Informatics graduate from <strong class="text-[#24252A] font-semibold">Telkom University</strong> with demonstrated hands-on experience across enterprise internships and engineering projects. Specialized in modern frontend architecture (Astro, Vue.js, React), backend API development (Laravel), and robust relational database modeling. Passionate about software craftsmanship, clean API design, and pragmatic machine learning applications.
+				</p>
+				<div class="flex flex-wrap items-center gap-3 pt-3">
+					<a href="mailto:sakhawibisono77@gmail.com" class="px-5 py-2.5 rounded-full glass-button-primary text-xs sm:text-sm font-semibold">
+						Email Me
+					</a>
+					<a href="https://linkedin.com/in/sakha-wibisono" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-full glass-button-secondary text-xs sm:text-sm technical-label flex items-center gap-1.5">
+						<span>LinkedIn</span>
+						<span class="text-xs">↗</span>
+					</a>
+					<a href="https://github.com/sakha-wibisono" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-full glass-button-secondary text-xs sm:text-sm technical-label flex items-center gap-1.5">
+						<span>GitHub</span>
+						<span class="text-xs">↗</span>
+					</a>
 				</div>
 			</div>
 		</section>
 
+		<!-- Career Journey Timeline -->
+		<section class="glass-card rounded-3xl p-6 sm:p-10 space-y-6">
+			<div class="border-b border-[#686A73]/15 pb-4">
+				<span class="technical-label uppercase text-[#7f5be8] tracking-wider block font-semibold">// CHRONOLOGY</span>
+				<h2 class="section-heading mt-1">Career Journey & Education</h2>
+			</div>
+
+			<div class="relative border-l border-[#686A73]/20 pl-6 ml-3 sm:ml-4 space-y-8">
+				<!-- Item 1 - Lavender -->
+				<div class="relative group">
+					<div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#C8B6FF] border-2 border-white shadow-xs"></div>
+					<div class="glass-subtle rounded-2xl p-5 border border-white space-y-1.5">
+						<div class="flex flex-wrap items-center justify-between gap-2">
+							<h3 class="card-heading">Bachelor of Informatics — Telkom University</h3>
+							<span class="technical-label px-2.5 py-0.5 rounded-full bg-[#C8B6FF]/30 border border-[#C8B6FF] text-[#24252A] font-medium">2024 – 2026</span>
+						</div>
+						<p class="technical-label text-[#686A73]">Bandung · GPA 3.50 / 4.00 · Focus: Generative AI Thesis</p>
+						<p class="small-text pt-1">
+							Specialized in process mining algorithms and LLM-assisted workflow discovery.
+						</p>
+					</div>
+				</div>
+
+				<!-- Item 2 - Peach -->
+				<div class="relative group">
+					<div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#FFD6BA] border-2 border-white shadow-xs"></div>
+					<div class="glass-subtle rounded-2xl p-5 border border-white space-y-1.5">
+						<div class="flex flex-wrap items-center justify-between gap-2">
+							<h3 class="card-heading">Programmer Internship — Perum Peruri</h3>
+							<span class="technical-label px-2.5 py-0.5 rounded-full bg-[#FFD6BA]/40 border border-[#FFD6BA] text-[#24252A] font-medium">2026</span>
+						</div>
+						<p class="technical-label text-[#686A73]">Jakarta / Remote · Enterprise SSO Frontend</p>
+						<p class="small-text pt-1">
+							Architected Single Sign-On (SSO) client interface utilizing Astro and Vue.js with OAuth 2.0 / OpenID Connect specifications.
+						</p>
+					</div>
+				</div>
+
+				<!-- Item 3 - Blue -->
+				<div class="relative group">
+					<div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#A9D6E5] border-2 border-white shadow-xs"></div>
+					<div class="glass-subtle rounded-2xl p-5 border border-white space-y-1.5">
+						<div class="flex flex-wrap items-center justify-between gap-2">
+							<h3 class="card-heading">Programmer Apprenticeship — Asah by Dicoding</h3>
+							<span class="technical-label px-2.5 py-0.5 rounded-full bg-[#A9D6E5]/40 border border-[#A9D6E5] text-[#24252A] font-medium">2025 – 2026</span>
+						</div>
+						<p class="technical-label text-[#686A73]">Bandung / Hybrid · Predictive Lead Scoring & React</p>
+						<p class="small-text pt-1">
+							Developed customer lead classification and predictive scoring models with React dashboards backed by Supabase.
+						</p>
+					</div>
+				</div>
+
+				<!-- Item 4 - Mint -->
+				<div class="relative group">
+					<div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#B8E0D2] border-2 border-white shadow-xs"></div>
+					<div class="glass-subtle rounded-2xl p-5 border border-white space-y-1.5">
+						<div class="flex flex-wrap items-center justify-between gap-2">
+							<h3 class="card-heading">Frontend Programmer Intern — Direktorat PuTI Telkom University</h3>
+							<span class="technical-label px-2.5 py-0.5 rounded-full bg-[#B8E0D2]/40 border border-[#B8E0D2] text-[#24252A] font-medium">2024</span>
+						</div>
+						<p class="technical-label text-[#686A73]">Telkom University · T-Feeder Academic System</p>
+						<p class="small-text pt-1">
+							Maintained and modernized high-throughput academic modules using AngularJS and REST APIs for university staff.
+						</p>
+					</div>
+				</div>
+
+				<!-- Item 5 - Pink -->
+				<div class="relative group">
+					<div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#F7C8E0] border-2 border-white shadow-xs"></div>
+					<div class="glass-subtle rounded-2xl p-5 border border-white space-y-1.5">
+						<div class="flex flex-wrap items-center justify-between gap-2">
+							<h3 class="card-heading">Diploma in Software Application Engineering — Telkom University</h3>
+							<span class="technical-label px-2.5 py-0.5 rounded-full bg-[#F7C8E0]/40 border border-[#F7C8E0] text-[#24252A] font-medium">2021 – 2024</span>
+						</div>
+						<p class="technical-label text-[#686A73]">Bandung · GPA 3.67 / 4.00 · Focus: MedRecordX Thesis</p>
+						<p class="small-text pt-1">
+							Engineered full-stack electronic medical record application with modular healthcare workflows.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Technical Interests & Engineering Philosophy -->
 		<section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-			<div class="glass rounded-2xl p-8">
-				<span class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Technical Interests</span>
-				<ul class="mt-3 space-y-2 text-sm text-slate-300 list-disc list-inside">
-					<li>Frontend engineering & design-to-code</li>
-					<li>Authentication systems (OAuth 2.0 / OIDC)</li>
-					<li>Applied machine learning & generative AI</li>
-					<li>Process mining & data science</li>
+			<div class="glass-card rounded-3xl p-6 sm:p-8 space-y-4">
+				<span class="technical-label uppercase text-[#7f5be8] tracking-wider block font-semibold">// CORE_FOCUS</span>
+				<h3 class="card-heading">Technical Interests</h3>
+				<ul class="space-y-2.5 small-text font-mono text-[#24252A]">
+					<li class="flex items-center gap-2">
+						<span class="w-2 h-2 rounded-full bg-[#C8B6FF]"></span> Modern Component Architecture (Astro, Vue, React)
+					</li>
+					<li class="flex items-center gap-2">
+						<span class="w-2 h-2 rounded-full bg-[#A9D6E5]"></span> Enterprise Authentication (OAuth 2.0 / OIDC / Sanctum)
+					</li>
+					<li class="flex items-center gap-2">
+						<span class="w-2 h-2 rounded-full bg-[#B8E0D2]"></span> Scalable Backend REST Services & Clean Architecture
+					</li>
+					<li class="flex items-center gap-2">
+						<span class="w-2 h-2 rounded-full bg-[#FFD6BA]"></span> Applied Machine Learning & Process Discovery
+					</li>
 				</ul>
 			</div>
-			<div class="glass rounded-2xl p-8">
-				<span class="text-xs font-semibold uppercase tracking-wider text-indigo-400">Personal Approach</span>
-				<p class="mt-3 text-sm text-slate-300 leading-relaxed">
-					Every technical feature must have a reason to exist. I focus on readable code,
-					API-first integration, and user-friendly interfaces — collaborating in Agile teams
-					and documenting decisions along the way.
-				</p>
+
+			<div class="glass-card rounded-3xl p-6 sm:p-8 space-y-4">
+				<span class="technical-label uppercase text-[#7f5be8] tracking-wider block font-semibold">// PHILOSOPHY</span>
+				<h3 class="card-heading">Engineering Approach</h3>
+				<blockquote class="body-text border-l-2 border-[#C8B6FF] pl-4 py-1 italic">
+					"Every technical feature must have a reason to exist. I build software prioritizing maintainability, type safety, resilient data pipelines, and clear user experiences."
+				</blockquote>
 			</div>
 		</section>
 	</main>
