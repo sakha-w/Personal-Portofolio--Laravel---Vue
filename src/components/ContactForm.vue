@@ -1,41 +1,10 @@
-<script setup lang="ts">
-import { ref } from 'vue';
-import { apiPost } from '@/shared/composables/useApi';
-import { BaseCard, BaseInput, BaseButton, BaseTag } from '@/components/ui';
-
-const form = ref({ name: '', email: '', subject: '', message: '' });
-const sending = ref(false);
-const feedback = ref('');
-const success = ref(false);
-
-async function submit() {
-  feedback.value = '';
-  success.value = false;
-  sending.value = true;
-  try {
-    const res = await apiPost<{ success: boolean; message: string }>('/contact', form.value);
-    if (res.success) {
-      success.value = true;
-      feedback.value = res.message ?? 'Your transmission was received successfully.';
-      form.value = { name: '', email: '', subject: '', message: '' };
-    } else {
-      feedback.value = res.message ?? 'Transmission rejected. Please verify input fields.';
-    }
-  } catch {
-    feedback.value = 'Network transmission error. Ensure the backend Laravel API is active.';
-  } finally {
-    sending.value = false;
-  }
-}
-</script>
-
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-    <BaseCard variant="default" class="lg:col-span-5 space-y-6 flex flex-col justify-between">
+    <div class="lg:col-span-5 glass-card rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between">
       <div class="space-y-4">
-        <BaseTag variant="lavender" size="default" class="inline-flex items-center gap-2">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lavender/30 border border-lavender text-ink font-mono text-xs">
           COORDINATES // REACH_OUT
-        </BaseTag>
+        </span>
         <div>
           <h2 class="text-2xl font-bold text-ink">Direct Information</h2>
           <p class="text-sm text-muted mt-1">
@@ -75,52 +44,63 @@ async function submit() {
         <span class="w-2 h-2 rounded-full bg-mint animate-pulse"></span>
         <span>Standard Response Time: < 24 Hours</span>
       </div>
-    </BaseCard>
+    </div>
 
-    <BaseCard variant="default" class="lg:col-span-7 space-y-6">
+    <div class="lg:col-span-7 glass-card rounded-2xl p-6 sm:p-8 space-y-6">
       <div class="border-b border-[#686A73]/15 pb-4">
-        <BaseTag variant="lavender" class="block font-mono text-xs uppercase tracking-wider font-semibold mb-1">
+        <span class="block font-mono text-xs uppercase tracking-wider font-semibold text-lavender-strong mb-1">
           // TRANSMISSION
-        </BaseTag>
+        </span>
         <h2 class="text-2xl font-bold text-ink mt-1">Send a Message</h2>
         <p class="text-sm text-muted mt-1">Data is processed through the Laravel REST API and stored securely.</p>
       </div>
 
       <form @submit.prevent="submit" class="space-y-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <BaseInput
-            id="cf-name"
-            label="YOUR_NAME *"
-            placeholder="e.g. Jane Doe"
-            required
-            v-model="form.name"
-          />
-          <BaseInput
-            id="cf-email"
-            label="YOUR_EMAIL *"
-            type="email"
-            placeholder="jane@company.com"
-            required
-            v-model="form.email"
+          <div>
+            <label class="block font-mono text-xs text-muted mb-1.5 uppercase tracking-wider" for="cf-name">YOUR_NAME *</label>
+            <input
+              id="cf-name"
+              v-model="form.name"
+              required
+              placeholder="e.g. Jane Doe"
+              class="w-full px-3.5 py-2.5 rounded-xl glass-input text-sm placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-lavender/50 disabled:opacity-50"
+            />
+          </div>
+          <div>
+            <label class="block font-mono text-xs text-muted mb-1.5 uppercase tracking-wider" for="cf-email">YOUR_EMAIL *</label>
+            <input
+              id="cf-email"
+              v-model="form.email"
+              type="email"
+              required
+              placeholder="jane@company.com"
+              class="w-full px-3.5 py-2.5 rounded-xl glass-input text-sm placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-lavender/50 disabled:opacity-50"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs text-muted mb-1.5 uppercase tracking-wider" for="cf-subject">SUBJECT</label>
+          <input
+            id="cf-subject"
+            v-model="form.subject"
+            placeholder="Opportunity / Collaboration Inquiry"
+            class="w-full px-3.5 py-2.5 rounded-xl glass-input text-sm placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-lavender/50"
           />
         </div>
 
-        <BaseInput
-          id="cf-subject"
-          label="SUBJECT"
-          placeholder="Opportunity / Collaboration Inquiry"
-          v-model="form.subject"
-        />
-
-        <BaseInput
-          id="cf-message"
-          label="MESSAGE_CONTENT *"
-          type="textarea"
-          placeholder="Hi Sakha, I came across your portfolio and would like to connect regarding..."
-          required
-          :rows="5"
-          v-model="form.message"
-        />
+        <div>
+          <label class="block font-mono text-xs text-muted mb-1.5 uppercase tracking-wider" for="cf-message">MESSAGE_CONTENT *</label>
+          <textarea
+            id="cf-message"
+            v-model="form.message"
+            required
+            rows="5"
+            placeholder="Hi Sakha, I came across your portfolio and would like to connect regarding..."
+            class="w-full px-3.5 py-2.5 rounded-xl glass-input text-sm placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-lavender/50"
+          ></textarea>
+        </div>
 
         <div
           v-if="feedback"
@@ -132,16 +112,51 @@ async function submit() {
           <span class="font-bold">{{ success ? 'SUCCESS:' : 'ERROR:' }}</span> {{ feedback }}
         </div>
 
-        <BaseButton
+        <button
           type="submit"
-          variant="primary"
-          class="w-full sm:w-auto px-6 py-3 rounded-full"
-          :loading="sending"
+          :disabled="sending"
+          class="w-full sm:w-auto px-6 py-3 rounded-full glass-button-primary text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
         >
           <span>{{ sending ? 'Transmitting...' : 'Send Message' }}</span>
           <span class="font-mono text-xs">→</span>
-        </BaseButton>
+        </button>
       </form>
-    </BaseCard>
+    </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const API_BASE = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8000/api';
+
+const form = ref({ name: '', email: '', subject: '', message: '' });
+const sending = ref(false);
+const feedback = ref('');
+const success = ref(false);
+
+async function submit() {
+  feedback.value = '';
+  success.value = false;
+  sending.value = true;
+  try {
+    const res = await fetch(`${API_BASE}/contact`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(form.value),
+    });
+    const json = await res.json();
+    if (res.ok && (json.success ?? true)) {
+      success.value = true;
+      feedback.value = json.message ?? 'Your transmission was received successfully.';
+      form.value = { name: '', email: '', subject: '', message: '' };
+    } else {
+      feedback.value = json.message ?? 'Transmission rejected. Please verify input fields.';
+    }
+  } catch {
+    feedback.value = 'Network transmission error. Ensure the backend Laravel API is active.';
+  } finally {
+    sending.value = false;
+  }
+}
+</script>

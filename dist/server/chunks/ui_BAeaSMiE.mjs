@@ -2,7 +2,7 @@ import { defineComponent, mergeProps, useAttrs, useSSRContext } from "vue";
 import { ssrInterpolate, ssrRenderAttr, ssrRenderAttrs, ssrRenderClass, ssrRenderList, ssrRenderSlot } from "vue/server-renderer";
 //#region src/shared/constants/design.ts
 var API_BASE = "http://localhost:8000/api";
-var colorPalette = {
+var colorKeys = Object.keys({
 	lavender: {
 		bg: "bg-lavender/30",
 		border: "border-lavender",
@@ -38,10 +38,9 @@ var colorPalette = {
 		strong: "text-pink-strong",
 		subtle: "bg-pink/25"
 	}
-};
-var colorKeys = Object.keys(colorPalette);
+});
 function getColorSet(index) {
-	return colorPalette[colorKeys[index % colorKeys.length]];
+	return colorKeys[index % colorKeys.length];
 }
 function getIssuerColorSet(index) {
 	const issuerOrder = [
@@ -51,7 +50,7 @@ function getIssuerColorSet(index) {
 		"peach",
 		"pink"
 	];
-	return colorPalette[issuerOrder[index % issuerOrder.length]];
+	return issuerOrder[index % issuerOrder.length];
 }
 //#endregion
 //#region src/shared/composables/useApi.ts
@@ -65,7 +64,9 @@ function buildUrl(endpoint, params) {
 async function apiGet(endpoint, params) {
 	const res = await fetch(buildUrl(endpoint, params), { headers: { Accept: "application/json" } });
 	if (!res.ok) throw new Error(`API ${res.status}: ${res.statusText}`);
-	return res.json();
+	const payload = await res.json();
+	if (payload !== null && typeof payload === "object" && "data" in payload) return payload.data;
+	return payload;
 }
 async function apiPost(endpoint, body) {
 	const res = await fetch(`${API_BASE}${endpoint}`, {
@@ -247,7 +248,7 @@ var _sfc_main$2 = /*@__PURE__*/ defineComponent({
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
 	let _temp0;
 	_push(`<div${ssrRenderAttrs(mergeProps({ class: "space-y-1.5" }, _attrs))}>`);
-	if ($props.label) _push(`<label${ssrRenderAttr("for", _ctx.id)} class="block font-mono text-xs leading-normal tracking-normal text-muted mb-1.5 uppercase tracking-wider">${ssrInterpolate($props.label)}</label>`);
+	if ($props.label) _push(`<label${ssrRenderAttr("for", _ctx.id)} class="block font-mono text-xs leading-normal text-muted mb-1.5 uppercase tracking-wider">${ssrInterpolate($props.label)}</label>`);
 	else _push(`<!---->`);
 	if ($props.type === "textarea") _push(`<textarea${ssrRenderAttrs(_temp0 = mergeProps({
 		class: [$setup.inputClasses, $props.error && "border-peach border"],

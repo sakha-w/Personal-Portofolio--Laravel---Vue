@@ -3,8 +3,8 @@ import { d as maybeRenderHead, i as renderComponent, u as renderTemplate } from 
 import { t as createComponent } from "./compiler_CiuUEj2q.mjs";
 import { t as $$Layout } from "./Layout_Bkz3qYVL.mjs";
 import { t as useAsync } from "./useAsync_Bvh2avCm.mjs";
-import { a as BaseCard_default, n as BaseTag_default, o as _plugin_vue_export_helper_default, s as apiGet, t as Skeleton_default } from "./ui_RCv8z31K.mjs";
-import { Fragment, createBlock, createTextVNode, createVNode, defineComponent, mergeProps, openBlock, renderList, toDisplayString, useSSRContext, withCtx } from "vue";
+import { a as BaseCard_default, n as BaseTag_default, o as _plugin_vue_export_helper_default, s as apiGet, t as Skeleton_default } from "./ui_BAeaSMiE.mjs";
+import { Fragment, createBlock, createTextVNode, createVNode, defineComponent, mergeProps, onMounted, openBlock, renderList, toDisplayString, useSSRContext, withCtx } from "vue";
 import { ssrInterpolate, ssrRenderAttrs, ssrRenderComponent, ssrRenderList } from "vue/server-renderer";
 //#region src/components/SkillsView.vue
 var _sfc_main = /*@__PURE__*/ defineComponent({
@@ -41,7 +41,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
 	_push(`<div${ssrRenderAttrs(mergeProps({ class: "space-y-6" }, _attrs))}>`);
 	if ($setup.loading) _push(ssrRenderComponent($setup["Skeleton"], {
 		variant: "card",
-		count: "4"
+		count: 4
 	}, null, _parent));
 	else if ($setup.error) _push(`<div class="glass-card rounded-2xl p-6 border border-red-300"><p class="font-mono text-xs font-bold text-red-600">SYSTEM ERROR:</p><p class="mt-1 text-muted font-mono text-xs">${ssrInterpolate($setup.error)}</p></div>`);
 	else {

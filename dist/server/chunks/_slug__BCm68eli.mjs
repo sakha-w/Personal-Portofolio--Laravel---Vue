@@ -3,7 +3,7 @@ import { S as createAstro, d as maybeRenderHead, i as renderComponent, u as rend
 import { t as createComponent } from "./compiler_CiuUEj2q.mjs";
 import { t as $$Layout } from "./Layout_Bkz3qYVL.mjs";
 import { t as useAsync } from "./useAsync_Bvh2avCm.mjs";
-import { a as BaseCard_default, i as BaseButton_default, l as getColorSet, n as BaseTag_default, o as _plugin_vue_export_helper_default, s as apiGet, t as Skeleton_default } from "./ui_RCv8z31K.mjs";
+import { a as BaseCard_default, i as BaseButton_default, l as getColorSet, n as BaseTag_default, o as _plugin_vue_export_helper_default, s as apiGet, t as Skeleton_default } from "./ui_BAeaSMiE.mjs";
 import { Fragment, createBlock, createCommentVNode, createTextVNode, createVNode, defineComponent, mergeProps, onMounted, openBlock, renderList, toDisplayString, useSSRContext, withCtx } from "vue";
 import { ssrInterpolate, ssrRenderAttrs, ssrRenderComponent, ssrRenderList } from "vue/server-renderer";
 //#region src/components/ProjectDetail.vue
@@ -50,19 +50,7 @@ var _sfc_main = /*@__PURE__*/ defineComponent({
 	}
 });
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-	_push(`<div${ssrRenderAttrs(mergeProps({ class: "space-y-8" }, _attrs))}>`);
-	_push(ssrRenderComponent($setup["BaseButton"], {
-		variant: "ghost",
-		size: "sm",
-		class: "inline-flex items-center gap-2 font-mono text-xs text-muted hover:text-ink",
-		onClick: ($event) => _ctx.$router.push("/projects")
-	}, {
-		default: withCtx((_, _push, _parent, _scopeId) => {
-			if (_push) _push(`<span${_scopeId}>←</span><span${_scopeId}>Back to all projects</span>`);
-			else return [createVNode("span", null, "←"), createVNode("span", null, "Back to all projects")];
-		}),
-		_: 1
-	}, _parent));
+	_push(`<div${ssrRenderAttrs(mergeProps({ class: "space-y-8" }, _attrs))}><a href="/projects" class="inline-flex items-center gap-2 font-mono text-xs text-muted hover:text-ink"><span>←</span><span>Back to all projects</span></a>`);
 	if ($setup.loading) _push(ssrRenderComponent($setup["Skeleton"], { variant: "cardFull" }, null, _parent));
 	else if ($setup.error) _push(`<div class="glass-card rounded-2xl p-6 border border-red-300"><p class="font-mono text-xs font-bold text-red-600">SYSTEM ERROR:</p><p class="mt-1 text-muted font-mono text-xs">${ssrInterpolate($setup.error)}</p></div>`);
 	else if ($setup.project) {

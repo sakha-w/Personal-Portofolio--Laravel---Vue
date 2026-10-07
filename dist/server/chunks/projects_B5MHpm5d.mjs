@@ -3,7 +3,7 @@ import { d as maybeRenderHead, i as renderComponent, u as renderTemplate } from 
 import { t as createComponent } from "./compiler_CiuUEj2q.mjs";
 import { t as $$Layout } from "./Layout_Bkz3qYVL.mjs";
 import { t as useAsync } from "./useAsync_Bvh2avCm.mjs";
-import { a as BaseCard_default, i as BaseButton_default, l as getColorSet, n as BaseTag_default, o as _plugin_vue_export_helper_default, s as apiGet, t as Skeleton_default } from "./ui_RCv8z31K.mjs";
+import { a as BaseCard_default, i as BaseButton_default, l as getColorSet, n as BaseTag_default, o as _plugin_vue_export_helper_default, s as apiGet, t as Skeleton_default } from "./ui_BAeaSMiE.mjs";
 import { Fragment, computed, createBlock, createTextVNode, createVNode, defineComponent, mergeProps, onMounted, openBlock, ref, renderList, toDisplayString, useSSRContext, withCtx } from "vue";
 import { ssrInterpolate, ssrRenderAttr, ssrRenderAttrs, ssrRenderComponent, ssrRenderList } from "vue/server-renderer";
 //#region src/components/ProjectGrid.vue
@@ -21,8 +21,8 @@ var _sfc_main = /*@__PURE__*/ defineComponent({
 		onMounted(() => {
 			execute(apiGet("/projects", { per_page: 50 })).then(() => {
 				if (projects.value) {
-					const cats = [...new Set(projects.value.map((p) => p.category).filter(Boolean))];
-					categories.value = ["All", ...cats];
+					const cats = [...new Set(projects.value.map((project) => project.category))];
+					categories.value = ["All", ...cats.filter((category) => Boolean(category))];
 				}
 			});
 		});
@@ -64,10 +64,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
 			key: cat,
 			variant: "ghost",
 			size: "sm",
-			class: ["px-3.5 py-1.5 rounded-full text-xs font-mono", {
-				"glass-button-primary": $setup.selected === cat,
-				"glass-subtle text-muted": $setup.selected !== cat
-			}],
+			class: ["px-3.5 py-1.5 rounded-full text-xs font-mono", $setup.selected === cat ? "glass-button-primary" : "glass-subtle text-muted"],
 			onClick: ($event) => $setup.selected = cat
 		}, {
 			default: withCtx((_, _push, _parent, _scopeId) => {
@@ -80,7 +77,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
 	_push(`<!--]--></div>`);
 	if ($setup.loading) _push(ssrRenderComponent($setup["Skeleton"], {
 		variant: "card",
-		count: "6"
+		count: 6
 	}, null, _parent));
 	else if ($setup.error) _push(`<div class="glass-card rounded-2xl p-6 border border-red-300"><p class="font-mono text-xs font-bold text-red-600">SYSTEM ERROR:</p><p class="mt-1 text-muted font-mono text-xs">${ssrInterpolate($setup.error)}</p></div>`);
 	else {
