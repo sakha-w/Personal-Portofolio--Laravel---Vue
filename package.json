@@ -10,7 +10,6 @@
         "astro:preview": "astro preview"
     },
     "devDependencies": {
-        "@astrojs/tailwind": "^6.0.2",
         "@tailwindcss/vite": "^4.0.0",
         "concurrently": "^10.0.3",
         "laravel-vite-plugin": "^3.1",
