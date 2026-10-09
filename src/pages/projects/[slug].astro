@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectDetail from '../../components/ProjectDetail.vue';
+
+const { slug } = Astro.params;
+---
+
+<Layout title="Project Detail | Sakha Wibisono" description="Project case study.">
+	<main id="content" class="shell page">
+		<ProjectDetail client:load slug={slug} />
+	</main>
+</Layout>

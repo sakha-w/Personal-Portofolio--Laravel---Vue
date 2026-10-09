@@ -3,9 +3,31 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-
     volumes:
       - .:/var/www
+      - /var/www/node_modules
+
+  vite:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: npm run dev -- --host
+    volumes:
+      - .:/var/www
+      - /var/www/node_modules
+    ports:
+      - "5173:5173"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run astro:dev -- --host 0.0.0.0 --port 4321
+    volumes:
+      - .:/var/www
+      - /var/www/node_modules
+    ports:
+      - "4321:4321"
 
   nginx:
     image: nginx:alpine
@@ -20,22 +42,16 @@ services:
       - app
       - postgres
 
-
   postgres:
     image: postgres:16
-
     container_name: laravel-postgres
-
     restart: unless-stopped
-
     environment:
       POSTGRES_DB: "laravel"
       POSTGRES_USER: "laravel"
       POSTGRES_PASSWORD: "secret"
-
     ports:
       - "5432:5432"
-
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

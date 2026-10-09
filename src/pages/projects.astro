@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectGrid from '../components/ProjectGrid.vue';
+---
+
+<Layout title="Projects | Sakha Wibisono" description="Project portfolio of Sakha Wibisono with technical case studies.">
+	<main id="content" class="shell page">
+		<header class="page-heading">
+			<p class="eyebrow">From coursework to the workplace</p>
+			<h1>Things I've worked on.</h1>
+			<p>Web applications, team projects, and research. Open a project to see what I worked on and the tools behind it.</p>
+		</header>
+		<ProjectGrid client:load />
+	</main>
+</Layout>

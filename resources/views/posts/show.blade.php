@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show Post</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <div class="container">
-        <h1>Show Post</h1>
-        <div class="card">
-            <div class="card-header">
-                {{ $post->title }}
-            </div>
-            <div class="card-body">
-                <p class="card-text">{{ $post->content }}</p>
-            </div>
-        </div>
-        <a href="{{ route('posts.index') }}" class="btn btn-primary mt-3">Back</a>
-    </div>
+<body class="bg-gray-100">
+    <div id="vue-app" data-component="ShowPost" data-props="{{ json_encode([
+        'post' => $post,
+        'indexUrl' => route('posts.index')
+    ]) }}"></div>
 </body>
 </html>

@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ExperienceList from '../components/ExperienceList.vue';
+---
+
+<Layout title="Experience | Sakha Wibisono" description="Professional experience timeline of Sakha Wibisono.">
+	<main id="content" class="shell page">
+		<header class="page-heading">
+			<p class="eyebrow">Learning on the job</p>
+			<h1>Where I've worked.</h1>
+			<p>Teams I've joined, problems I've worked on, and a few things I've learned along the way.</p>
+		</header>
+		<ExperienceList client:load />
+	</main>
+</Layout>

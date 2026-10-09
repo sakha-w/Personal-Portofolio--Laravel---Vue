@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EducationList from '../components/EducationList.vue';
+---
+
+<Layout title="Education | Sakha Wibisono" description="Academic background and credentials of Sakha Wibisono.">
+	<main id="content" class="shell page">
+		<header class="page-heading">
+			<p class="eyebrow">Telkom University</p>
+			<h1>Where it started.</h1>
+			<p>A diploma in software engineering, followed by a bachelor's in Informatics. Two degrees, and plenty of learning through projects.</p>
+		</header>
+		<EducationList client:load />
+	</main>
+</Layout>

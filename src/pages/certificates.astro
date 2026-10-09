@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CertificateGrid from '../components/CertificateGrid.vue';
+---
+
+<Layout title="Certificates | Sakha Wibisono" description="Professional certifications and credentials of Sakha Wibisono.">
+	<main id="content" class="shell page">
+		<header class="page-heading">
+			<p class="eyebrow">Continuing to learn</p>
+			<h1>Courses I've completed.</h1>
+			<p>Extra time spent learning React, backend development, machine learning, and cloud fundamentals.</p>
+		</header>
+		<CertificateGrid client:load />
+	</main>
+</Layout>

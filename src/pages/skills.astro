@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SkillsView from '../components/SkillsView.vue';
+---
+
+<Layout title="Skills | Sakha Wibisono" description="Technical stack and skills inventory of Sakha Wibisono.">
+	<main id="content" class="shell page">
+		<header class="page-heading">
+			<p class="eyebrow">My toolkit</p>
+			<h1>What I work with.</h1>
+			<p>Tools I've used in projects and study. Frontend development is my main focus; backend integration and data science are part of what I'm learning next.</p>
+		</header>
+		<SkillsView client:load />
+	</main>
+</Layout>
