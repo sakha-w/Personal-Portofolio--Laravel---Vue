@@ -4,14 +4,12 @@ import ContactForm from '../components/ContactForm.vue';
 ---
 
 <Layout title="Contact | Sakha Wibisono" description="Get in touch with Sakha Wibisono for engineering opportunities or collaborations.">
-	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10 space-y-8">
-		<div class="border-b border-[#686A73]/15 pb-6">
-			<span class="font-mono text-xs leading-normal uppercase text-lavender-strong tracking-wider block font-semibold">// COMMUNICATIONS</span>
-			<h1 class="text-3xl sm:text-4xl leading-tight font-bold tracking-normal text-ink mt-1">Get in Touch</h1>
-			<p class="text-sm leading-relaxed text-muted mt-1 max-w-xl">
-				Send a direct message or connect through professional channels. Inquiries are stored and processed via the Laravel API.
-			</p>
-		</div>
+	<main id="content" class="shell page">
+		<header class="page-heading">
+			<p class="eyebrow">My inbox is open</p>
+			<h1>Let's have a conversation.</h1>
+			<p>Have a role or project in mind? Or just a question about something I've built? I'd like to hear from you.</p>
+		</header>
 		<ContactForm client:load />
 	</main>
 </Layout>

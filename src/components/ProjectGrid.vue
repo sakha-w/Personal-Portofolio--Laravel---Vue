@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
 
+const props = defineProps<{ featured?: boolean }>();
 const API_BASE = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8000/api';
 
 interface ProjectItem {
@@ -10,45 +11,28 @@ interface ProjectItem {
   short_description?: string;
   category: string;
   year?: string;
-  featured: boolean;
   technologies: Array<{ id: number; name: string }>;
 }
 
 const projects = ref<ProjectItem[]>([]);
-const categories = ref<string[]>(['All']);
 const selected = ref('All');
 const loading = ref(true);
 const error = ref('');
-
-const colorSets = [
-  { bg: 'bg-lavender/30', border: 'border-lavender', text: 'text-ink' },
-  { bg: 'bg-blue/35', border: 'border-blue', text: 'text-ink' },
-  { bg: 'bg-mint/35', border: 'border-mint', text: 'text-ink' },
-  { bg: 'bg-peach/40', border: 'border-peach', text: 'text-ink' },
-];
-
-function getColorSet(index: number) {
-  return colorSets[index % colorSets.length];
-}
-
-const filtered = computed(() => {
-  if (selected.value === 'All') return projects.value ?? [];
-  return (projects.value ?? []).filter(p => p.category === selected.value);
-});
+const categories = computed(() => ['All', ...new Set(projects.value.map(project => project.category))]);
+const filtered = computed(() => selected.value === 'All' ? projects.value : projects.value.filter(project => project.category === selected.value));
 
 async function fetchProjects() {
   loading.value = true;
   error.value = '';
   try {
-    const res = await fetch(`${API_BASE}/projects?per_page=50`, { headers: { Accept: 'application/json' } });
-    if (!res.ok) throw new Error(`API ${res.status}`);
+    // ponytail: filters cover the first API page (12 projects); use server-side filtering/pagination when it grows.
+    const res = await fetch(`${API_BASE}/projects${props.featured ? '?featured=true' : ''}`, { headers: { Accept: 'application/json' } });
+    if (!res.ok) throw new Error('Request failed');
     const payload = await res.json();
-    const data = payload?.data ?? payload ?? [];
-    projects.value = data;
-    const cats = [...new Set(data.map(p => p.category).filter(Boolean))];
-    categories.value = ['All', ...cats];
-  } catch (e) {
-    error.value = e instanceof Error ? e.message : 'Failed to load projects';
+    if (!Array.isArray(payload.data)) throw new Error('Unexpected response');
+    projects.value = props.featured ? payload.data.slice(0, 3) : payload.data;
+  } catch {
+    error.value = "I couldn't load the projects just now. Please try again.";
   } finally {
     loading.value = false;
   }
@@ -58,77 +42,29 @@ onMounted(fetchProjects);
 </script>
 
 <template>
-  <div class="space-y-8">
-    <div class="flex flex-wrap items-center gap-2 pb-2">
-      <button
-        v-for="cat in categories"
-        :key="cat"
-        @click="selected = cat"
-        class="px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-200 cursor-pointer"
-        :class="[
-          'inline-flex items-center justify-center gap-2 font-medium rounded-full font-sans tracking-wide',
-          selected === cat
-            ? 'glass-button-primary shadow-xs'
-            : 'glass-subtle text-muted hover:text-ink hover:bg-white/70'
-        ]"
-      >
-        {{ cat }}
-      </button>
+  <div class="space-y-6" :aria-busy="loading">
+    <div v-if="!featured" class="flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">
+      <button v-for="category in categories" :key="category" type="button" class="filter-button" :aria-pressed="selected === category" @click="selected = category">{{ category }}</button>
     </div>
-
-    <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div v-for="i in 6" :key="i" class="animate-pulse bg-[#686A73]/10 rounded h-5 w-1/2 space-y-3">
-        <div class="h-4 bg-[#686A73]/10 rounded w-1/3"></div>
-        <div class="h-6 bg-[#686A73]/15 rounded w-3/4"></div>
-        <div class="h-3 bg-[#686A73]/10 rounded w-full"></div>
-      </div>
+    <p v-if="loading" class="status-panel" role="status">Loading projects…</p>
+    <div v-else-if="error" class="status-panel" role="alert">
+      <p>{{ error }}</p><button class="text-link mt-3" type="button" @click="fetchProjects">Try again</button>
     </div>
-
-    <div v-else-if="error" class="glass-card rounded-2xl p-6 border border-red-300">
-      <p class="font-mono text-xs font-bold text-red-600">SYSTEM ERROR:</p>
-      <p class="mt-1 text-muted font-mono text-xs">{{ error }}</p>
-    </div>
-
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a
-        v-for="(proj, idx) in filtered"
-        :key="proj.slug"
-        :href="`/projects/${proj.slug}`"
-      >
-        <div class="glass-card rounded-2xl group flex flex-col justify-between p-6 sm:p-8 space-y-6">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center font-mono text-xs">
-              <span
-                class="inline-flex items-center gap-1 font-mono font-medium rounded-full border px-1.5 py-0.5 text-[10px]"
-                :class="[
-                  getColorSet(idx).bg,
-                  getColorSet(idx).border,
-                  getColorSet(idx).text,
-                ]"
-              >
-                {{ proj.category }}
-              </span>
-              <span class="text-muted">{{ proj.year }}</span>
-            </div>
-
-            <h3 class="text-xl font-semibold text-ink group-hover:text-lavender-strong transition-colors">
-              {{ proj.title }}
-            </h3>
-
-            <p class="text-sm text-muted line-clamp-3">{{ proj.short_description }}</p>
-          </div>
-
-          <div class="pt-4 mt-4 border-t border-[#686A73]/15">
-            <div class="flex flex-wrap gap-1.5">
-              <span
-                v-for="tech in proj.technologies"
-                :key="tech.id"
-                class="inline-flex items-center gap-1 font-mono font-medium rounded-full border px-1.5 py-0.5 text-[10px] bg-white/70 text-ink border-white"
-              >
-                {{ tech.name }}
-              </span>
-            </div>
-          </div>
+    <p v-else-if="!filtered.length" class="status-panel" role="status">No projects in this category yet.</p>
+    <div v-else class="grid gap-5 md:grid-cols-2" :class="{ 'lg:grid-cols-3': featured }">
+      <a v-for="project in filtered" :key="project.id" :href="`/projects/${encodeURIComponent(project.slug)}`" class="glass-card glass-link group flex h-full flex-col p-7">
+        <div class="mb-9 flex items-center justify-between">
+          <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#code" /></svg></span>
+          <span class="font-mono text-xs text-muted">{{ project.year }}</span>
+        </div>
+        <p class="eyebrow mb-3">{{ project.category }}</p>
+        <h3 class="text-xl font-medium leading-snug tracking-tight">{{ project.title }}</h3>
+        <p class="mt-3 mb-7 text-sm text-muted">{{ project.short_description }}</p>
+        <div class="mt-auto flex flex-wrap gap-1.5">
+          <span v-for="tech in project.technologies" :key="tech.id" class="tag">{{ tech.name }}</span>
+        </div>
+        <div class="mt-6 flex items-center justify-between border-t border-line pt-4 text-sm text-accent">
+          <span>About this project</span><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#arrow-up-right" /></svg>
         </div>
       </a>
     </div>

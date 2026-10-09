@@ -1,141 +1,14 @@
-<template>
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-    <div class="lg:col-span-5 glass-card rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between">
-      <div class="space-y-4">
-        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lavender/30 border border-lavender text-ink font-mono text-xs">
-          COORDINATES // REACH_OUT
-        </span>
-        <div>
-          <h2 class="text-2xl font-bold text-ink">Direct Information</h2>
-          <p class="text-sm text-muted mt-1">
-            I am actively available for software engineering roles, technical internships, and innovative projects.
-          </p>
-        </div>
-
-        <div class="space-y-3 pt-2 font-mono text-xs">
-          <div class="p-3.5 rounded-xl glass-subtle border border-white space-y-0.5">
-            <span class="text-[11px] text-muted uppercase tracking-wider block font-semibold">Email Address</span>
-            <a href="mailto:sakhawibisono77@gmail.com" class="text-ink hover:text-lavender-strong transition-colors font-medium text-sm">
-              sakhawibisono77@gmail.com
-            </a>
-          </div>
-
-          <div class="p-3.5 rounded-xl glass-subtle border border-white space-y-0.5">
-            <span class="text-[11px] text-muted uppercase tracking-wider block font-semibold">Phone & WhatsApp</span>
-            <p class="text-ink font-medium text-sm">(+62) 896-1404-0447</p>
-          </div>
-
-          <div class="p-3.5 rounded-xl glass-subtle border border-white space-y-0.5">
-            <span class="text-[11px] text-muted uppercase tracking-wider block font-semibold">LinkedIn Profile</span>
-            <a href="https://linkedin.com/in/sakha-wibisono" target="_blank" rel="noopener noreferrer" class="text-lavender-strong hover:opacity-80 transition-opacity text-sm flex items-center gap-1">
-              <span>linkedin.com/in/sakha-wibisono</span>
-              <span class="text-xs">↗</span>
-            </a>
-          </div>
-
-          <div class="p-3.5 rounded-xl glass-subtle border border-white space-y-0.5">
-            <span class="text-[11px] text-muted uppercase tracking-wider block font-semibold">Base Location</span>
-            <p class="text-ink font-medium text-sm">Bandung, West Java, Indonesia</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="pt-4 border-t border-[#686A73]/15 flex items-center gap-2 font-mono text-xs text-mint-strong">
-        <span class="w-2 h-2 rounded-full bg-mint animate-pulse"></span>
-        <span>Standard Response Time: < 24 Hours</span>
-      </div>
-    </div>
-
-    <div class="lg:col-span-7 glass-card rounded-2xl p-6 sm:p-8 space-y-6">
-      <div class="border-b border-[#686A73]/15 pb-4">
-        <span class="block font-mono text-xs uppercase tracking-wider font-semibold text-lavender-strong mb-1">
-          // TRANSMISSION
-        </span>
-        <h2 class="text-2xl font-bold text-ink mt-1">Send a Message</h2>
-        <p class="text-sm text-muted mt-1">Data is processed through the Laravel REST API and stored securely.</p>
-      </div>
-
-      <form @submit.prevent="submit" class="space-y-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-mono text-xs text-muted mb-1.5 uppercase tracking-wider" for="cf-name">YOUR_NAME *</label>
-            <input
-              id="cf-name"
-              v-model="form.name"
-              required
-              placeholder="e.g. Jane Doe"
-              class="w-full px-3.5 py-2.5 rounded-xl glass-input text-sm placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-lavender/50 disabled:opacity-50"
-            />
-          </div>
-          <div>
-            <label class="block font-mono text-xs text-muted mb-1.5 uppercase tracking-wider" for="cf-email">YOUR_EMAIL *</label>
-            <input
-              id="cf-email"
-              v-model="form.email"
-              type="email"
-              required
-              placeholder="jane@company.com"
-              class="w-full px-3.5 py-2.5 rounded-xl glass-input text-sm placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-lavender/50 disabled:opacity-50"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-mono text-xs text-muted mb-1.5 uppercase tracking-wider" for="cf-subject">SUBJECT</label>
-          <input
-            id="cf-subject"
-            v-model="form.subject"
-            placeholder="Opportunity / Collaboration Inquiry"
-            class="w-full px-3.5 py-2.5 rounded-xl glass-input text-sm placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-lavender/50"
-          />
-        </div>
-
-        <div>
-          <label class="block font-mono text-xs text-muted mb-1.5 uppercase tracking-wider" for="cf-message">MESSAGE_CONTENT *</label>
-          <textarea
-            id="cf-message"
-            v-model="form.message"
-            required
-            rows="5"
-            placeholder="Hi Sakha, I came across your portfolio and would like to connect regarding..."
-            class="w-full px-3.5 py-2.5 rounded-xl glass-input text-sm placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-lavender/50"
-          ></textarea>
-        </div>
-
-        <div
-          v-if="feedback"
-          :class="[
-            'p-3.5 rounded-xl font-mono text-xs border',
-            success ? 'bg-mint/40 border-mint text-ink' : 'bg-peach/40 border-peach text-ink',
-          ]"
-        >
-          <span class="font-bold">{{ success ? 'SUCCESS:' : 'ERROR:' }}</span> {{ feedback }}
-        </div>
-
-        <button
-          type="submit"
-          :disabled="sending"
-          class="w-full sm:w-auto px-6 py-3 rounded-full glass-button-primary text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
-        >
-          <span>{{ sending ? 'Transmitting...' : 'Send Message' }}</span>
-          <span class="font-mono text-xs">→</span>
-        </button>
-      </form>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 
 const API_BASE = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8000/api';
-
 const form = ref({ name: '', email: '', subject: '', message: '' });
 const sending = ref(false);
 const feedback = ref('');
 const success = ref(false);
 
 async function submit() {
+  if (sending.value) return;
   feedback.value = '';
   success.value = false;
   sending.value = true;
@@ -146,17 +19,49 @@ async function submit() {
       body: JSON.stringify(form.value),
     });
     const json = await res.json();
-    if (res.ok && (json.success ?? true)) {
+    if (res.ok && json.success) {
       success.value = true;
-      feedback.value = json.message ?? 'Your transmission was received successfully.';
+      feedback.value = "Thanks for the message. I'll get back to you by email.";
       form.value = { name: '', email: '', subject: '', message: '' };
     } else {
-      feedback.value = json.message ?? 'Transmission rejected. Please verify input fields.';
+      feedback.value = res.status === 429
+        ? 'A few too many messages at once. Please wait a minute and try again.'
+        : json.message ?? "Your message wasn't sent. Please check the fields and try again.";
     }
   } catch {
-    feedback.value = 'Network transmission error. Ensure the backend Laravel API is active.';
+    feedback.value = "I couldn't receive your message just now. Please try again, or email me directly.";
   } finally {
     sending.value = false;
   }
 }
 </script>
+
+<template>
+  <div class="grid gap-5 lg:grid-cols-[.85fr_1.15fr]">
+    <aside class="glass-card flex flex-col p-7 sm:p-9" aria-label="Contact details">
+      <span class="icon-box mb-7"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#mail" /></svg></span>
+      <h2 class="text-2xl font-medium tracking-tight">A good place to start.</h2>
+      <p class="mt-4 text-sm text-muted">Tell me a bit about the role or project you have in mind. I'm happy to share more about my work, too.</p>
+      <div class="mt-9 space-y-6">
+        <div><p class="mb-2 text-xs text-muted">Email</p><a href="mailto:sakhawibisono77@gmail.com" class="text-link break-all">sakhawibisono77@gmail.com</a></div>
+        <div><p class="mb-2 text-xs text-muted">Phone</p><a href="tel:+6289614040447" class="text-link"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#phone" /></svg>+62 896-1404-0447</a></div>
+        <div><p class="mb-2 text-xs text-muted">Elsewhere</p><a href="https://linkedin.com/in/sakha-wibisono/" class="text-link" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#linkedin" /></svg>Connect on LinkedIn <svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#arrow-up-right" /></svg></a></div>
+      </div>
+      <p class="mt-9 border-t border-line pt-6 text-xs text-muted">English or Bahasa Indonesia — either is welcome.</p>
+    </aside>
+    <section class="glass-card p-7 sm:p-9" aria-labelledby="message-title">
+      <h2 id="message-title" class="text-2xl font-medium tracking-tight">Leave me a note</h2>
+      <p class="mt-2 mb-7 text-sm text-muted">Your name, email, and message are all I need.</p>
+      <form @submit.prevent="submit" class="space-y-5" :aria-busy="sending">
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div><label for="cf-name" class="field-label">Your name</label><input id="cf-name" v-model="form.name" class="field" name="name" autocomplete="name" maxlength="255" placeholder="Alex" required /></div>
+          <div><label for="cf-email" class="field-label">Email address</label><input id="cf-email" v-model="form.email" class="field" name="email" type="email" autocomplete="email" maxlength="255" placeholder="alex@company.com" required /></div>
+        </div>
+        <div><label for="cf-subject" class="field-label">Subject <span class="text-xs text-muted">(optional)</span></label><input id="cf-subject" v-model="form.subject" class="field" name="subject" maxlength="255" placeholder="A role, a project, or a quick hello" /></div>
+        <div><label for="cf-message" class="field-label">Your message</label><textarea id="cf-message" v-model="form.message" class="field resize-y" name="message" rows="6" maxlength="5000" placeholder="Hi Sakha, I'd like to talk about…" required></textarea></div>
+        <p v-if="feedback" :role="success ? 'status' : 'alert'" class="rounded-lg border border-line bg-white/5 p-4 text-sm" :class="success ? 'text-accent' : 'text-[#e4bdb4]'">{{ feedback }}</p>
+        <button type="submit" class="button button-primary w-full sm:w-auto" :disabled="sending">{{ sending ? 'Sending…' : 'Send message' }}<svg class="icon" aria-hidden="true"><use :href="`/icons/tabler.svg#${success ? 'check' : 'arrow-up-right'}`" /></svg></button>
+      </form>
+    </section>
+  </div>
+</template>

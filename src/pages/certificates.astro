@@ -4,14 +4,12 @@ import CertificateGrid from '../components/CertificateGrid.vue';
 ---
 
 <Layout title="Certificates | Sakha Wibisono" description="Professional certifications and credentials of Sakha Wibisono.">
-	<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10 space-y-8">
-		<div class="border-b border-[#686A73]/15 pb-6">
-			<span class="font-mono text-xs leading-normal tracking-normal uppercase text-lavender-strong tracking-wider block font-semibold">// VERIFIED_CREDENTIALS</span>
-			<h1 class="text-3xl sm:text-4xl leading-tight font-bold tracking-normal text-ink mt-1">Certifications</h1>
-			<p class="text-sm leading-relaxed text-muted mt-1 max-w-xl">
-				Industry-recognized technical certificates covering modern backend development, machine learning, React applications, and cloud basics.
-			</p>
-		</div>
+	<main id="content" class="shell page">
+		<header class="page-heading">
+			<p class="eyebrow">Continuing to learn</p>
+			<h1>Courses I've completed.</h1>
+			<p>Extra time spent learning React, backend development, machine learning, and cloud fundamentals.</p>
+		</header>
 		<CertificateGrid client:load />
 	</main>
 </Layout>
