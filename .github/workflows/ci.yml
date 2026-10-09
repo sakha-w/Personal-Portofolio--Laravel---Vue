@@ -17,6 +17,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare Laravel environment
+        run: |
+          cp .env.example .env
+
       - name: Build Docker image
         run: docker compose build
 
@@ -24,10 +28,31 @@ jobs:
         run: docker compose up -d
 
       - name: Install dependencies
-        run: docker compose exec -T app composer install
+        run: |
+         docker compose exec -T app composer install \
+            --no-interaction \
+            --prefer-dist \
+            --no-progress            
+
+      - name: Verify Laravel environment
+        run: |
+         docker compose exec -T app \
+          test -f /var/www/.env
 
       - name: Generate application key
-        run: docker compose exec -T app php artisan key:generate
+        run: |
+         docker compose exec -T app \
+          php artisan key:generate
 
       - name: Run tests
-        run: docker compose exec -T app php artisan test
+        run: | 
+          docker compose exec -T app \
+            php artisan test
+
+      - name: Show container logs on failure
+        if: failure()
+        run: docker compose logs --tail=100
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down -v
