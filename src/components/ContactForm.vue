@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const API_BASE = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8000/api';
+const API_BASE = '/api';
 const form = ref({ name: '', email: '', subject: '', message: '' });
 const sending = ref(false);
 const feedback = ref('');

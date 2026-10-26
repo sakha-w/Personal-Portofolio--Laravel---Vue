@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
@@ -10,13 +11,15 @@ class ExampleTest extends TestCase
     /**
      * A basic test example.
      */
-
     use RefreshDatabase;
 
-    public function test_the_application_returns_a_successful_response(): void
+    public function test_backend_health_and_retired_browser_routes(): void
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->get('/up')->assertOk();
+        foreach (['/', '/admin', '/admin/login', '/posts', '/posts/create'] as $path) {
+            $this->get($path)->assertNotFound()->assertJsonStructure(['message']);
+        }
+        $this->postJson('/posts', ['title' => 'Retired', 'content' => 'Retired'])->assertNotFound();
+        $this->assertTrue(Schema::hasTable('posts'));
     }
 }

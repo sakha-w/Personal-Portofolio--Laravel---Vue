@@ -21,6 +21,7 @@ class Experience extends Model
         'start_date' => 'date',
         'end_date' => 'date',
         'featured' => 'boolean',
+        'evidence_images' => 'array',
     ];
 
     public function technologies(): BelongsToMany

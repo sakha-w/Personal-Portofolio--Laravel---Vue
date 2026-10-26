@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Certificate extends Model
 {
+    protected $casts = ['image' => 'array'];
+
     protected $fillable = [
         'title',
         'issuer',

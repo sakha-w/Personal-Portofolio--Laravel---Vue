@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
+import type { ContentImageData } from './portfolio';
+import ContentImage from './ContentImage.vue';
 
-const API_BASE = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8000/api';
+const API_BASE = '/api';
 const props = defineProps<{ slug: string }>();
 
 interface ProjectDetailData {
+  image?: ContentImageData | null;
   title: string;
   category: string;
   year?: string;
@@ -56,6 +59,7 @@ onMounted(fetchProject);
       <article class="glass-card p-7 sm:p-12">
         <div class="flex flex-wrap items-center gap-3"><span class="eyebrow">{{ project.category }}</span><span class="text-xs text-muted">{{ project.year }}</span></div>
         <h1 class="mt-5 max-w-3xl text-3xl font-medium leading-tight tracking-tight sm:text-5xl">{{ project.title }}</h1>
+        <ContentImage v-if="project.image" :image="project.image" eager class="mt-7" />
         <p class="mt-6 max-w-3xl whitespace-pre-line text-muted">{{ project.description }}</p>
         <div class="mt-7 flex flex-wrap gap-2"><span v-for="tech in project.technologies" :key="tech.id" class="tag">{{ tech.name }}</span></div>
         <div v-if="project.github_url || project.demo_url" class="mt-9 flex flex-wrap gap-3 border-t border-line pt-7">

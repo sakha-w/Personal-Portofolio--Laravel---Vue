@@ -6,6 +6,7 @@ import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
+    publicDir: "./src/public",
     output: "server",
     adapter: node({
         mode: "standalone",
@@ -18,19 +19,17 @@ export default defineConfig({
             },
         },
         plugins: [tailwindcss()],
+        server: {
+            hmr: { clientPort: Number(process.env.HTTP_PORT || 8000) },
+            watch: {
+                ignored: ["**/node_modules/**", "**/vendor/**", "**/dist/**", "**/.astro/**", "**/.git/**", "**/storage/**"],
+                usePolling: true,
+                interval: 1000,
+            },
+        },
     },
     server: {
         port: 4321,
         host: true,
-        watch: {
-            ignored: [
-                "**/node_modules/**",
-                "**/.git/**",
-                "**/storage/**",
-                "**/public/build/**",
-            ],
-            usePolling: true,
-            interval: 1000,
-        },
     },
 });

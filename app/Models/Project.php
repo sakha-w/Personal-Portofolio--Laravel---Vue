@@ -26,6 +26,7 @@ class Project extends Model
 
     protected $casts = [
         'featured' => 'boolean',
+        'image' => 'array',
     ];
 
     public function technologies(): BelongsToMany

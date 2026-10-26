@@ -3,30 +3,24 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
-        "dev": "vite",
+        "build": "astro build",
+        "dev": "astro dev",
         "astro:dev": "astro dev",
         "astro:build": "astro build",
-        "astro:preview": "astro preview"
+        "astro:preview": "astro preview",
+        "test:browser": "node tests/admin.browser.cjs"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
-        "concurrently": "^10.0.3",
-        "laravel-vite-plugin": "^3.1",
+        "playwright": "^1.64.1",
         "tailwindcss": "^4.3.3",
-        "typescript": "^7.0.2",
-        "vite": "^8.0.0"
-    },
-    "optionalDependencies": {
-        "@laravel/multiplex": "^0.4.1"
+        "typescript": "^7.0.2"
     },
     "dependencies": {
         "@astrojs/node": "^11.1.6",
         "@astrojs/vue": "^7.0.3",
         "@vitejs/plugin-vue": "^6.0.9",
         "astro": "^7.3.5",
-        "naive-ui": "^2.45.3",
-        "vfonts": "^0.0.3",
         "vue": "^3.5.43"
     }
 }

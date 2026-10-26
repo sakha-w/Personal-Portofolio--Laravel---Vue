@@ -23,7 +23,7 @@ const isActive = (href: string) => currentPath === href || (href !== '/' && curr
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#1b1d20" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -59,7 +59,7 @@ const isActive = (href: string) => currentPath === href || (href !== '/' && curr
       <a href="mailto:sakhawibisono77@gmail.com" class="text-link">Say hello <svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#arrow-up-right" /></svg></a>
     </footer>
     <script>
-      const api = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8000/api';
+      const api = '/api';
       fetch(`${api}/analytics/view`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

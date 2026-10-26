@@ -19,10 +19,11 @@ class ExperienceResource extends JsonResource
             'company' => $this->company,
             'position' => $this->position,
             'location' => $this->location,
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
+            'start_date' => $this->start_date?->toDateString(),
+            'end_date' => $this->end_date?->toDateString(),
             'description' => $this->description,
             'featured' => (bool) $this->featured,
+            'evidence_images' => ImageResource::collection($this->evidence_images ?? []),
             'technologies' => $this->whenLoaded('technologies', fn () => $this->technologies->map(fn ($tech) => [
                 'id' => $tech->id,
                 'name' => $tech->name,

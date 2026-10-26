@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+.astro
+dist
+node_modules
+vendor
+storage
+bootstrap/cache/*.php
+public/storage
+.phpunit.cache
+.phpunit.result.cache
+*.log
+*.sql
+*.dump

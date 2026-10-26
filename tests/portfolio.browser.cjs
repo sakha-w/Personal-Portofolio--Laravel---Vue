@@ -3,10 +3,12 @@ const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 
 (async () => {
-  const browser = await chromium.launch({ executablePath: process.env.BROWSER_EXECUTABLE, headless: true });
+  const browser = await chromium.launch({ ...(process.env.BROWSER_EXECUTABLE ? { executablePath: process.env.BROWSER_EXECUTABLE } : process.platform === 'win32' ? { channel: 'msedge' } : {}), headless: true });
   const page = await browser.newPage();
-  const base = process.argv[2] || 'http://localhost:4321';
+  const base = process.argv[2] || 'http://localhost:8000';
   const errors = [];
+  const sockets = [];
+  page.on('websocket', socket => sockets.push(socket.url()));
   page.on('pageerror', error => errors.push(error.message));
   await page.route('**/api/analytics/view', route => route.fulfill({ json: { success: true } }));
 
@@ -21,6 +23,9 @@ const { chromium } = require('playwright');
   try {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await visit('/');
+    if (await page.locator('script[src*="/@vite/client"]').count()) {
+      assert.ok(sockets.some(value => new URL(value).host === new URL(base).host), 'Development HMR uses the gateway port');
+    }
     assert.equal(await page.locator('main a.glass-link').count(), 3, 'Three featured projects');
     const styles = await page.evaluate(() => ({
       background: getComputedStyle(document.body, '::before').backgroundImage,
@@ -38,9 +43,11 @@ const { chromium } = require('playwright');
     const allCount = await page.locator('a.glass-link').count();
     const filter = page.getByRole('button', { name: 'Frontend', exact: true });
     await filter.click();
+    await page.locator('[aria-busy="false"]').waitFor();
     assert.equal(await filter.getAttribute('aria-pressed'), 'true');
     assert.ok((await page.locator('a.glass-link .eyebrow').allTextContents()).every(text => text === 'Frontend'));
-    await page.getByRole('button', { name: 'All', exact: true }).click();
+    await page.getByRole('button', { name: 'All projects', exact: true }).click();
+    await page.locator('[aria-busy="false"]').waitFor();
     assert.equal(await page.locator('a.glass-link').count(), allCount);
     const detail = await page.locator('a.glass-link').first().getAttribute('href');
 
@@ -76,8 +83,12 @@ const { chromium } = require('playwright');
     await page.getByRole('button', { name: 'Send message' }).click();
     await page.getByRole('status').waitFor();
     assert.equal(await page.getByLabel('Your message', { exact: true }).inputValue(), '');
+    await page.goto(`${base}/admin/login`);
+    await page.getByRole('heading', { name: 'Welcome back.' }).waitFor();
+    assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow');
+    assert.equal(await page.locator('meta[name="csrf-token"]').count(), 0, 'Admin authentication is independent of Blade');
     assert.deepEqual(errors, [], 'No browser runtime errors');
-    console.log('PASS: 9 routes at 320/768/1440px, CSS, pixel background, Tabler, filtering, retry, mobile menu, contact failure and success.');
+    console.log('PASS: public routes at 320/768/1440px, assets, filtering, retry, mobile menu, contact states, and Astro admin login.');
   } finally {
     await browser.close();
   }

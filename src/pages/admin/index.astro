@@ -1,0 +1,10 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminApp from '../../admin/components/AdminApp.vue';
+---
+
+<AdminLayout title="Content studio">
+  <AdminApp client:only="vue">
+    <main slot="fallback" id="main-content" class="admin-shell"><p class="status-panel" role="status">Loading content studio…</p></main>
+  </AdminApp>
+</AdminLayout>

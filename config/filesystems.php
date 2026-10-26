@@ -39,6 +39,7 @@ return [
         ],
 
         'public' => [
+            // ponytail: one persistent app filesystem; use shared storage before adding application replicas.
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',

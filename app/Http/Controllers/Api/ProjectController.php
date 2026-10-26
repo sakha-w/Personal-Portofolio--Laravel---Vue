@@ -2,91 +2,62 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\ContentWriter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContentIndexRequest;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of projects.
-     */
-    public function index(Request $request)
+    public function __construct(private ContentWriter $writer) {}
+
+    public function index(ContentIndexRequest $request): AnonymousResourceCollection
     {
-        $query = Project::with('technologies')->latest();
-
-        if ($category = $request->query('category')) {
-            $query->where('category', $category);
+        $query = Project::with('technologies:id,name,slug')
+            ->select(['id', 'title', 'slug', 'short_description', 'thumbnail', 'image', 'year', 'category', 'featured', 'created_at', 'updated_at'])
+            ->orderByDesc('created_at')->orderByDesc('id');
+        if ($request->filled('category')) {
+            $query->where('category', $request->input('category'));
+        }
+        if ($request->has('featured')) {
+            $query->where('featured', $request->boolean('featured'));
+        }
+        if ($request->filled('q')) {
+            $query->whereLike('title', $request->searchPattern());
         }
 
-        if ($request->boolean('featured')) {
-            $query->where('featured', true);
-        }
-
-        return ProjectResource::collection($query->paginate(12));
+        return ProjectResource::collection($query->paginate($request->perPage())->withQueryString())
+            ->additional(['meta' => ['categories' => Project::distinct()->orderBy('category')->pluck('category')]]);
     }
 
-    /**
-     * Display the specified project by slug.
-     */
-    public function show(string $slug)
+    public function show(string $slug): ProjectResource
     {
-        $project = Project::with('technologies')->where('slug', $slug)->firstOrFail();
-
-        return new ProjectResource($project);
+        return new ProjectResource(Project::with('technologies')->where('slug', $slug)->firstOrFail());
     }
 
-    /**
-     * Store a newly created project.
-     */
-    public function store(StoreProjectRequest $request)
+    public function store(StoreProjectRequest $request): JsonResponse
     {
-        $data = $request->validated();
-        $technologyIds = $data['technology_ids'] ?? [];
-        unset($data['technology_ids']);
+        $project = $this->writer->save(new Project, $request->validated());
 
-        $data['slug'] = $data['slug'] ?? Str::slug($data['title']);
-
-        $project = Project::create($data);
-        $project->technologies()->sync($technologyIds);
-
-        return (new ProjectResource($project->load('technologies')))
-            ->response()
-            ->setStatusCode(201);
+        return (new ProjectResource($project->load('technologies')))->response()->setStatusCode(201);
     }
 
-    /**
-     * Update the specified project.
-     */
-    public function update(StoreProjectRequest $request, Project $project)
+    public function update(StoreProjectRequest $request, Project $project): ProjectResource
     {
-        $data = $request->validated();
-        $technologyIds = $data['technology_ids'] ?? null;
-        unset($data['technology_ids']);
-
-        if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title'] ?? $project->title);
-        }
-
-        $project->update($data);
-
-        if ($technologyIds !== null) {
-            $project->technologies()->sync($technologyIds);
-        }
+        $project = $this->writer->save($project, $request->validated());
 
         return new ProjectResource($project->load('technologies'));
     }
 
-    /**
-     * Remove the specified project.
-     */
-    public function destroy(Project $project)
+    public function destroy(Project $project): Response
     {
-        $project->delete();
+        $this->writer->delete($project);
 
-        return response()->json(null, 204);
+        return response()->noContent();
     }
 }

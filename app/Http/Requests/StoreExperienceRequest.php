@@ -2,35 +2,25 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class StoreExperienceRequest extends FormRequest
+class StoreExperienceRequest extends ContentRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
             'company' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
-            'location' => ['nullable', 'string', 'max:255'],
-            'start_date' => ['nullable', 'date'],
-            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
-            'description' => ['nullable', 'string'],
-            'featured' => ['nullable', 'boolean'],
-            'technology_ids' => ['nullable', 'array'],
-            'technology_ids.*' => ['integer', 'exists:technologies,id'],
+            'location' => $this->text(),
+            'start_date' => [...$this->text(10), 'date_format:Y-m-d'],
+            'end_date' => [...$this->text(10), 'date_format:Y-m-d', ...($this->filled('start_date') ? ['after_or_equal:start_date'] : [])],
+            'description' => $this->text(20000),
+            ...$this->selections(),
+            'evidence_images' => ['sometimes', 'array', 'list', 'max:3'],
+            'evidence_images.*' => ['array:id,upload_index,alt'],
+            'evidence_images.*.id' => ['sometimes', 'required', 'string', 'max:64', 'distinct'],
+            'evidence_images.*.upload_index' => ['sometimes', 'required', 'integer', 'min:0', 'max:2', 'distinct'],
+            'evidence_images.*.alt' => ['required', 'string', 'max:255'],
+            'evidence_files' => ['sometimes', 'array', 'max:3'],
+            'evidence_files.*' => $this->imageRules(),
         ];
     }
 }
