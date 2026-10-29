@@ -29,7 +29,6 @@ class ContentIndexRequest extends FormRequest
 
     public function searchPattern(): string
     {
-        // ponytail: contains-search suits this small catalogue; add a trigram index if measured search latency grows.
         return '%'.addcslashes((string) $this->input('q', ''), '\\%_').'%';
     }
 }

@@ -50,6 +50,26 @@ const { chromium } = require('playwright');
     await page.locator('[aria-busy="false"]').waitFor();
     assert.equal(await page.locator('a.glass-link').count(), allCount);
     const detail = await page.locator('a.glass-link').first().getAttribute('href');
+    await page.route('**/api/projects*', route => route.fulfill({ json: {
+      data: [
+        { id: 999, title: 'Portrait project', slug: 'portrait-project', short_description: 'A vertical project image.', image: { id: 'portrait', url: '/favicon.svg', alt: 'Portrait project cover', width: 720, height: 1280 }, year: '2026', category: 'Frontend', technologies: [] },
+        { id: 1000, title: 'Text-only project', slug: 'text-only-project', short_description: 'A project without a cover image.', image: null, year: '2026', category: 'Frontend', technologies: [] },
+      ],
+      links: {}, meta: { current_page: 1, last_page: 1, total: 2, categories: ['Frontend'] },
+    } }));
+    await visit('/projects');
+    assert.match(await page.getByAltText('Portrait project cover').getAttribute('class'), /aspect-video object-contain/, 'Portrait project cards show the complete image');
+    const projectCards = page.locator('a.glass-link');
+    assert.ok((await projectCards.nth(0).boundingBox()).height > (await projectCards.nth(1).boundingBox()).height, 'Cards without images use their content height');
+    await page.unroute('**/api/projects*');
+
+    await page.route('**/api/projects/internal-project', route => route.fulfill({ json: { data: {
+      id: 1001, title: 'Internal project', slug: 'internal-project', category: 'Frontend', year: '2026', description: 'This project is internal.',
+      github_url: 'https://github.com/example/internal', demo_url: 'https://internal.example.com', show_source_link: false, show_project_link: false, technologies: [],
+    } } }));
+    await visit('/projects/internal-project');
+    assert.equal(await page.locator('article a.button').count(), 0, 'Disabled project links are not rendered');
+    await page.unroute('**/api/projects/internal-project');
 
     for (const width of [320, 768, 1440]) {
       await page.setViewportSize({ width, height: 900 });

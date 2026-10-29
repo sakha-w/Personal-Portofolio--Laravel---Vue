@@ -34,7 +34,7 @@ class PortfolioAdminTest extends TestCase
         return [...[
             'title' => 'Portfolio', 'slug' => 'portfolio', 'short_description' => null,
             'description' => 'Case study', 'year' => '2026', 'category' => 'Web Development',
-            'featured' => false, 'github_url' => null, 'demo_url' => null,
+            'featured' => false, 'github_url' => null, 'demo_url' => null, 'show_source_link' => true, 'show_project_link' => true,
             'architecture' => null, 'challenge' => null, 'solution' => null, 'result' => null,
             'technology_ids' => [],
         ], ...$overrides];
@@ -189,6 +189,40 @@ class PortfolioAdminTest extends TestCase
         $this->postJson('/api/experiences', $this->experience(['end_date' => '2024-12-31']))->assertUnprocessable()->assertJsonValidationErrors('end_date');
     }
 
+    public function test_project_link_visibility_hides_urls_from_public_responses(): void
+    {
+        $this->actingAs($this->owner);
+        $data = $this->project([
+            'github_url' => 'https://github.com/example/private-project',
+            'demo_url' => 'https://private.example.com',
+            'show_source_link' => false,
+            'show_project_link' => false,
+        ]);
+        $project = $this->postJson('/api/projects', $data)->assertCreated()->json('data');
+
+        $this->getJson('/api/projects')->assertOk()
+            ->assertJsonPath('data.0.github_url', $data['github_url'])
+            ->assertJsonPath('data.0.demo_url', $data['demo_url'])
+            ->assertJsonPath('data.0.show_source_link', false)
+            ->assertJsonPath('data.0.show_project_link', false);
+
+        Auth::forgetGuards();
+        Auth::shouldUse('web');
+        $this->getJson("/api/projects/{$project['slug']}")->assertOk()
+            ->assertJsonPath('data.github_url', null)
+            ->assertJsonPath('data.demo_url', null)
+            ->assertJsonPath('data.show_source_link', false)
+            ->assertJsonPath('data.show_project_link', false);
+
+        $this->actingAs($this->owner);
+        $this->putJson("/api/projects/{$project['id']}", [...$data, 'show_source_link' => true, 'show_project_link' => true])->assertOk();
+        Auth::forgetGuards();
+        Auth::shouldUse('web');
+        $this->getJson("/api/projects/{$project['slug']}")->assertOk()
+            ->assertJsonPath('data.github_url', $data['github_url'])
+            ->assertJsonPath('data.demo_url', $data['demo_url']);
+    }
+
     public function test_image_upload_preserve_replace_remove_and_delete(): void
     {
         $this->actingAs($this->owner);
@@ -256,9 +290,10 @@ class PortfolioAdminTest extends TestCase
         $data = json_encode($this->project(['image_alt' => 'Preview']));
         $this->post('/api/projects', ['data' => $data, 'image' => UploadedFile::fake()->createWithContent('image.jpg', '<?php echo 1;')], ['Accept' => 'application/json'])->assertUnprocessable()->assertJsonValidationErrors('image');
         $this->post('/api/projects', ['data' => $data, 'image' => $this->image()->size(2049)], ['Accept' => 'application/json'])->assertUnprocessable()->assertJsonValidationErrors('image');
-        $this->post('/api/projects', ['data' => $data, 'image' => $this->image(4097)], ['Accept' => 'application/json'])->assertUnprocessable()->assertJsonValidationErrors('image');
-        $this->assertDatabaseCount('projects', 0);
-        $this->assertCount(0, Storage::disk('public')->allFiles());
+        $this->post('/api/projects', ['data' => $data, 'image' => $this->image(4097)], ['Accept' => 'application/json'])->assertCreated();
+        $this->post('/api/projects', ['data' => json_encode($this->project(['title' => 'Too wide', 'slug' => 'too-wide', 'image_alt' => 'Preview'])), 'image' => $this->image(8193)], ['Accept' => 'application/json'])->assertUnprocessable()->assertJsonValidationErrors('image');
+        $this->assertDatabaseCount('projects', 1);
+        $this->assertCount(1, Storage::disk('public')->allFiles());
     }
 
     public function test_failed_database_save_preserves_old_image_and_cleans_new_upload(): void
@@ -286,7 +321,7 @@ class PortfolioAdminTest extends TestCase
         $original = Project::findOrFail($record['id'])->image;
         $disk = Storage::disk('public');
         $failing = Mockery::mock($disk);
-        $failing->shouldReceive('putFileAs')->once()->andReturn(false);
+        $failing->shouldReceive('put')->once()->andReturn(false);
         Storage::shouldReceive('disk')->with('public')->andReturn($failing);
         $this->post("/api/projects/{$record['id']}", ['_method' => 'PUT', 'data' => json_encode($data), 'image' => $this->image()], ['Accept' => 'application/json'])->assertServerError();
         $this->assertSame($original, Project::findOrFail($record['id'])->image);

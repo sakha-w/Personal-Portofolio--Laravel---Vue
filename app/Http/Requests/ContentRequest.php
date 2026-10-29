@@ -60,7 +60,7 @@ class ContentRequest extends FormRequest
 
     protected function imageRules(): array
     {
-        return ['file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048', 'dimensions:max_width=4096,max_height=4096'];
+        return ['file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048', 'dimensions:max_width=8192,max_height=8192'];
     }
 
     protected function singleImageRules(): array

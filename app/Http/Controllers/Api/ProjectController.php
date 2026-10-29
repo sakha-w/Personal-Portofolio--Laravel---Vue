@@ -21,6 +21,9 @@ class ProjectController extends Controller
         $query = Project::with('technologies:id,name,slug')
             ->select(['id', 'title', 'slug', 'short_description', 'thumbnail', 'image', 'year', 'category', 'featured', 'created_at', 'updated_at'])
             ->orderByDesc('created_at')->orderByDesc('id');
+        if ($request->user()?->can('manage-content')) {
+            $query->addSelect(['description', 'github_url', 'demo_url', 'show_source_link', 'show_project_link', 'architecture', 'challenge', 'solution', 'result']);
+        }
         if ($request->filled('category')) {
             $query->where('category', $request->input('category'));
         }

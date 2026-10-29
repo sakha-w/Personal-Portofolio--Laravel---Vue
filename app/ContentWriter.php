@@ -141,8 +141,8 @@ class ContentWriter
         $name = $id.'.'.$file->extension();
         $path = $directory.'/'.$name;
         $created[] = $path;
-        // ponytail: bounded originals (2 MiB); generate srcset variants if mobile transfer becomes a bottleneck.
-        if (! $file->storeAs($directory, $name, 'public')) {
+        $contents = file_get_contents($file->getPathname());
+        if ($contents === false || ! Storage::disk('public')->put($path, $contents)) {
             throw new RuntimeException('The image could not be stored.');
         }
 

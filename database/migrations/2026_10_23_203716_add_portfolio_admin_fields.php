@@ -24,7 +24,6 @@ return new class extends Migration
             $table->index(['featured', 'created_at', 'id']);
         });
         Schema::table('experiences', function (Blueprint $table) {
-            // ponytail: galleries are capped at three; use related media rows for independently managed galleries.
             $table->json('evidence_images')->default('[]');
             $table->index(['start_date', 'id']);
         });

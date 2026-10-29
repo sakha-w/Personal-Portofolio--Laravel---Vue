@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev libzi
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /var/www
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-RUN printf 'upload_max_filesize=2M\npost_max_size=8M\n' > /usr/local/etc/php/conf.d/uploads.ini
+RUN printf 'upload_max_filesize=2M\npost_max_size=8M\nlog_errors=On\nerror_log=/proc/self/fd/2\n' > /usr/local/etc/php/conf.d/uploads.ini \
+    && printf '[www]\ncatch_workers_output = yes\n' > /usr/local/etc/php-fpm.d/zz-logging.conf
 
 FROM backend-base AS development
 COPY composer.json composer.lock ./

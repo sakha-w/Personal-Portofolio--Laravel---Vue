@@ -18,6 +18,8 @@ class Project extends Model
         'featured',
         'github_url',
         'demo_url',
+        'show_source_link',
+        'show_project_link',
         'architecture',
         'challenge',
         'solution',
@@ -26,6 +28,8 @@ class Project extends Model
 
     protected $casts = [
         'featured' => 'boolean',
+        'show_source_link' => 'boolean',
+        'show_project_link' => 'boolean',
         'image' => 'array',
     ];
 

@@ -38,8 +38,8 @@ watch(selected, () => load());
       <p>{{ error }}</p><button class="text-link mt-3" type="button" @click="load(meta?.current_page || 1)">Try again</button>
     </div>
     <p v-else-if="!projects.length" class="status-panel" role="status">No projects in this category yet.</p>
-    <div v-else class="grid gap-5 md:grid-cols-2" :class="{ 'lg:grid-cols-3': featured }">
-      <a v-for="project in projects" :key="project.id" :href="`/projects/${encodeURIComponent(project.slug)}`" class="glass-card glass-link group flex h-full flex-col p-7">
+    <div v-else class="columns-1 gap-5 md:columns-2" :class="{ 'lg:columns-3': featured }">
+      <a v-for="project in projects" :key="project.id" :href="`/projects/${encodeURIComponent(project.slug)}`" class="glass-card glass-link group mb-5 flex w-full break-inside-avoid flex-col p-7">
         <ContentImage v-if="project.image" :image="project.image" crop class="mb-6" />
         <div class="mb-9 flex items-center justify-between">
           <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#code" /></svg></span>

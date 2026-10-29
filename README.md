@@ -126,7 +126,7 @@ Content collections: `projects`, `experiences`, `certificates`, `educations`, an
 - Projects: one cover image.
 - Certificates: one certificate image.
 - Experiences: at most **three evidence images**.
-- JPEG, PNG, or WebP; maximum **2 MiB** and **4096 × 4096 pixels** per image.
+- JPEG, PNG, or WebP; maximum **2 MiB** and **8192 × 8192 pixels** per image.
 - Each image has descriptive alt text and intrinsic dimensions for responsive display.
 
 File requests use multipart `data` containing JSON plus `image` or `evidence_files[index]`. Multipart edits use `POST` with `_method=PUT`.

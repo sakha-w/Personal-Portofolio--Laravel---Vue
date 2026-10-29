@@ -5,6 +5,7 @@ services:
       target: development
     volumes:
       - .:/var/www
+    command: sh -c 'chown -R www-data:www-data storage bootstrap/cache && exec php-fpm'
     depends_on:
       postgres:
         condition: service_healthy

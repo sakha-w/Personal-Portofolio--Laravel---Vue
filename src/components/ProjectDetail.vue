@@ -14,6 +14,8 @@ interface ProjectDetailData {
   description?: string;
   github_url?: string;
   demo_url?: string;
+  show_source_link: boolean;
+  show_project_link: boolean;
   architecture?: string;
   challenge?: string;
   solution?: string;
@@ -62,9 +64,9 @@ onMounted(fetchProject);
         <ContentImage v-if="project.image" :image="project.image" eager class="mt-7" />
         <p class="mt-6 max-w-3xl whitespace-pre-line text-muted">{{ project.description }}</p>
         <div class="mt-7 flex flex-wrap gap-2"><span v-for="tech in project.technologies" :key="tech.id" class="tag">{{ tech.name }}</span></div>
-        <div v-if="project.github_url || project.demo_url" class="mt-9 flex flex-wrap gap-3 border-t border-line pt-7">
-          <a v-if="project.github_url" :href="project.github_url" class="button" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#code" /></svg>View source</a>
-          <a v-if="project.demo_url" :href="project.demo_url" class="button button-primary" target="_blank" rel="noopener noreferrer">Visit project <svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#arrow-up-right" /></svg></a>
+        <div v-if="(project.show_source_link && project.github_url) || (project.show_project_link && project.demo_url)" class="mt-9 flex flex-wrap gap-3 border-t border-line pt-7">
+          <a v-if="project.show_source_link && project.github_url" :href="project.github_url" class="button" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#code" /></svg>View source</a>
+          <a v-if="project.show_project_link && project.demo_url" :href="project.demo_url" class="button button-primary" target="_blank" rel="noopener noreferrer">Visit project <svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#arrow-up-right" /></svg></a>
         </div>
       </article>
       <div v-if="sections.length" class="grid gap-5 md:grid-cols-2">

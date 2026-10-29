@@ -19,6 +19,8 @@ class StoreProjectRequest extends ContentRequest
             'category' => [$this->isMethod('POST') ? 'sometimes' : 'required', 'string', 'max:100'],
             'github_url' => [...$this->text(2048), 'url:http,https'],
             'demo_url' => [...$this->text(2048), 'url:http,https'],
+            'show_source_link' => ['boolean'],
+            'show_project_link' => ['boolean'],
             'architecture' => $this->text(20000),
             'challenge' => $this->text(20000),
             'solution' => $this->text(20000),

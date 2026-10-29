@@ -47,7 +47,7 @@ onBeforeUnmount(() => urls.forEach(url => URL.revokeObjectURL(url)));
 <template>
     <fieldset class="space-y-4 border-t border-line pt-6">
         <legend class="px-1 font-medium">{{ limit === 3 ? 'Experience evidence' : 'Cover / certificate image' }}</legend>
-        <p id="upload-help" class="text-sm text-muted">JPEG, PNG, or WebP · 2 MiB per image · up to 4096 × 4096 pixels. {{ limit === 3 ? 'Maximum 3 evidence images.' : 'Choose a new image to replace the current one.' }}</p>
+        <p id="upload-help" class="text-sm text-muted">JPEG, PNG, or WebP · 2 MiB per image · up to 8192 × 8192 pixels. {{ limit === 3 ? 'Maximum 3 evidence images.' : 'Choose a new image to replace the current one.' }}</p>
         <label for="content-images" class="field-label">{{ limit === 3 ? 'Add evidence images' : 'Upload image' }}</label>
         <input id="content-images" class="field" type="file" accept="image/jpeg,image/png,image/webp" :multiple="limit > 1" :disabled="limit > 1 && modelValue.length >= limit" aria-describedby="upload-help upload-error" @change="select" />
         <p v-if="error" id="upload-error" role="alert" class="field-error">{{ error }}</p>

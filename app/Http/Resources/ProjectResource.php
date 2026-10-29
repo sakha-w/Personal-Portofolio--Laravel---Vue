@@ -15,7 +15,9 @@ class ProjectResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $detail = $request->routeIs('api.projects.show') || ! $request->isMethod('GET');
+        $isContentManager = $request->user()?->can('manage-content') ?? false;
+        $isPrivateResponse = $isContentManager || ! $request->isMethod('GET');
+        $detail = $request->routeIs('api.projects.show') || $isPrivateResponse;
 
         return [
             'id' => $this->id,
@@ -28,8 +30,10 @@ class ProjectResource extends JsonResource
             'year' => $this->year,
             'category' => $this->category,
             'featured' => (bool) $this->featured,
-            'github_url' => $this->when($detail, fn () => $this->github_url),
-            'demo_url' => $this->when($detail, fn () => $this->demo_url),
+            'github_url' => $this->when($detail, fn () => ($isPrivateResponse || $this->show_source_link) ? $this->github_url : null),
+            'demo_url' => $this->when($detail, fn () => ($isPrivateResponse || $this->show_project_link) ? $this->demo_url : null),
+            'show_source_link' => $this->when($detail, fn () => (bool) $this->show_source_link),
+            'show_project_link' => $this->when($detail, fn () => (bool) $this->show_project_link),
             'architecture' => $this->when($detail, fn () => $this->architecture),
             'challenge' => $this->when($detail, fn () => $this->challenge),
             'solution' => $this->when($detail, fn () => $this->solution),
