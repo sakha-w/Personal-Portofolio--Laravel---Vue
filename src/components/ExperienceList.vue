@@ -28,7 +28,7 @@ const formatDate = (value: string | null) => value ? new Date(value).toLocaleDat
       <li v-for="experience in experiences" :key="experience.id" class="glass-card grid gap-6 p-7 sm:p-9 md:grid-cols-[13rem_1fr]">
         <div>
           <span class="icon-box mb-5"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#briefcase" /></svg></span>
-          <p class="font-mono text-xs text-accent">{{ experience.start_date ? formatDate(experience.start_date) : 'Date not specified' }} – {{ formatDate(experience.end_date) }}</p>
+          <p class="font-mono text-xs text-accent">{{ experience.start_date ? formatDate(experience.start_date) : 'Date not specified' }} - {{ formatDate(experience.end_date) }}</p>
           <p class="mt-2 text-xs text-muted">{{ experience.location }}</p>
         </div>
         <div class="min-w-0">
