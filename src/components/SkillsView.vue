@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 
-const API_BASE = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8000/api';
+const API_BASE = '/api';
 interface SkillItem { id: number; name: string; slug: string; }
 const groups = ref<Record<string, SkillItem[]>>({});
 const loading = ref(true);

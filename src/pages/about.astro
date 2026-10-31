@@ -1,28 +1,158 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="About | Sakha Wibisono" description="A little about my path from software engineering student to frontend developer.">
-  <main id="content" class="shell page space-y-8">
-    <header class="page-heading"><p class="eyebrow">Beyond the résumé</p><h1>A little about me.</h1><p>I'm Sakha, an Informatics graduate from Telkom University. Most of my work happens somewhere between a design and an API.</p></header>
-    <section class="glass-card grid gap-8 p-7 sm:p-10 md:grid-cols-[1.5fr_1fr]" aria-labelledby="story-title">
-      <div class="space-y-5">
-        <h2 id="story-title" class="section-title">From learning the basics<br />to building for real people.</h2>
-        <p class="text-muted">I started with a diploma in Software Application Engineering, then continued into the Informatics bachelor's program. My diploma project was MedRecordX, a patient medical record application for Telagasari Azimat Clinic.</p>
-        <p class="text-muted">Internships at PuTI Telkom University and Peruri gave me a chance to work on academic tools and sign-on interfaces. At Asah by Dicoding, I led the React frontend and backend integration for a lead-scoring application.</p>
-        <p class="text-muted">I'm also learning more about data science. My bachelor's thesis explored using generative AI for process discovery in operational maintenance data.</p>
-        <a href="/experience" class="text-link">See where I've worked <svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#arrow-up-right" /></svg></a>
-      </div>
-      <aside class="space-y-7 border-t border-line pt-7 md:border-t-0 md:border-l md:pt-0 md:pl-8" aria-label="At a glance">
-        <svg class="icon text-accent" aria-hidden="true"><use href="/icons/tabler.svg#school" /></svg>
-        <div><p class="eyebrow mb-2">2024–2026</p><h3 class="font-medium">Bachelor of Informatics</h3><p class="text-sm text-muted">Telkom University · GPA 3.50/4.00</p></div>
-        <div><p class="eyebrow mb-2">2021–2024</p><h3 class="font-medium">Diploma in Software Application Engineering</h3><p class="text-sm text-muted">Telkom University · GPA 3.67/4.00</p></div>
-        <a href="/education" class="text-link">My education <svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#arrow-right" /></svg></a>
-      </aside>
-    </section>
-    <div class="grid gap-5 md:grid-cols-2">
-      <section class="glass-card p-7 sm:p-9"><p class="eyebrow mb-4"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#code" /></svg>What I'm interested in</p><h2 class="mb-4 text-xl font-medium">Interfaces that make sense.</h2><p class="text-sm text-muted">Responsive layouts, reusable components, and API integration are the parts of web development I keep coming back to. Authentication and applied AI have been interesting problems to learn from, too.</p></section>
-      <section class="glass-card p-7 sm:p-9"><p class="eyebrow mb-4"><svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#briefcase" /></svg>Outside the project work</p><h2 class="mb-4 text-xl font-medium">Learning with other people.</h2><p class="text-sm text-muted">I joined Chevalier Lab's Laravel study group and served in the RPLA student association's advocacy department. Both were good practice in listening, asking questions, and helping a team move forward.</p></section>
-    </div>
-  </main>
+<Layout
+    title="About | Sakha Wibisono"
+    description="From a clinic records app to SSO at a state-owned enterprise. Here is how I have been learning to build software that people actually use."
+>
+    <main id="content" class="shell page space-y-8">
+        <header class="page-heading">
+            <p class="eyebrow">Beyond the resume</p><h1>A little about me.</h1>
+        </header>
+        <section
+            class="glass-card grid gap-8 p-7 sm:p-10 md:grid-cols-[1.5fr_1fr]"
+            aria-labelledby="story-title"
+        >
+            <div class="space-y-5">
+                <h2 id="story-title" class="sr-only">My story</h2>
+                <p class="text-muted">
+                    My name is Sakha. I graduated from the D3 Software
+                    Application Engineering program at Telkom University in
+                    2024, then continued straight into the S1 Informatics
+                    program at the same campus.
+                </p>
+                <p class="text-muted">
+                    My diploma thesis was MedRecordX, a patient medical record
+                    application built for Telagasari Azimat Clinic. Small
+                    project by most measures, but it was the first time I had to
+                    build something that real people would rely on every single
+                    working day. That shifts how you think about error handling.
+                </p>
+                <p class="text-muted">
+                    During my D3 program, I interned at Directorate PuTI Telkom
+                    University as a frontend developer, helping build and
+                    maintain the university's internal academic information
+                    system using AngularJS. Part of that work involved
+                    integrating the T-Feeder application with Neo Feeder
+                    PDDIKTI, which meant coordinating across backend teams and
+                    understanding how API-based data synchronization actually
+                    holds up at institutional scale.
+                </p>
+                <p class="text-muted">
+                    Then I joined the Asah Ied by Dicoding cohort. This one ran
+                    closer to a real job than any training program I had been
+                    through. I led the React frontend and handled backend
+                    integration for a predictive lead scoring app in a banking
+                    context. The backend ran on Supabase. I managed database
+                    design, authentication, authorization, and the connection to
+                    the ML model. We worked in Agile sprints, and almost every
+                    sprint had something go sideways. That turned out to be
+                    where most of the real learning happened.
+                </p>
+                <p class="text-muted">
+                    Most recently, I interned at Perum Peruri in Jakarta, where
+                    I built the SSO frontend module using Astro and Vue.js with
+                    a hybrid SSR and SPA architecture. That meant properly
+                    implementing OAuth 2.0 and OpenID Connect, including token
+                    exchange, refresh logic, and all the access protection edge
+                    cases that tutorials tend to gloss over. It was the first
+                    project where I genuinely felt the weight of getting
+                    authentication wrong.
+                </p>
+                <p class="text-muted">
+                    My bachelor's thesis looks at using generative AI for
+                    process discovery in operational maintenance data at an
+                    electric power company. That work pulled me toward data
+                    science and process mining more seriously than any
+                    coursework had. Right now I am open to roles on the data
+                    side of things too, whether that is IT Business Analyst,
+                    Business Intelligence, or something else in that space.
+                    Still finding my spark, but the direction is starting to get
+                    clearer.
+                </p>
+            </div>
+            <aside
+                class="space-y-7 border-t border-line pt-7 md:border-t-0 md:border-l md:pt-0 md:pl-8"
+                aria-label="At a glance"
+            >
+                <svg class="icon text-accent" aria-hidden="true"
+                    ><use href="/icons/tabler.svg#school"></use></svg
+                >
+                <div>
+                    <p class="eyebrow mb-2">2024 - 2026</p><h3
+                        class="font-medium"
+                    >
+                        Bachelor of Informatics
+                    </h3><p class="text-sm text-muted">
+                        Telkom University GPA 3.50/4.00
+                    </p>
+                </div>
+                <div>
+                    <p class="eyebrow mb-2">2021 - 2024</p><h3
+                        class="font-medium"
+                    >
+                        Diploma in Software Application Engineering
+                    </h3><p class="text-sm text-muted">
+                        Telkom University GPA 3.67/4.00
+                    </p>
+                </div>
+                <a href="/education" class="text-link"
+                    >My education <svg class="icon" aria-hidden="true"
+                        ><use href="/icons/tabler.svg#arrow-right"></use></svg
+                    ></a
+                >
+            </aside>
+        </section>
+        <div class="grid gap-5 md:grid-cols-2">
+            <section class="glass-card p-7 sm:p-9">
+                <p class="eyebrow mb-4">
+                    <svg class="icon" aria-hidden="true"
+                        ><use href="/icons/tabler.svg#code"></use></svg
+                    >What I'm working on now
+                </p><h2 class="mb-4 text-xl font-medium">
+                    Interfaces that don't make people think twice.
+                </h2><div class="space-y-4 text-sm text-muted">
+                    <p>
+                        Responsive layouts, reusable components, and clean API
+                        integration are the parts of web development I keep
+                        coming back to. But what has been pulling my attention
+                        lately is the space between the interface and the data
+                        behind it. How they talk to each other, and what breaks
+                        when they stop doing that well.
+                    </p><p>
+                        Authentication taught me a lot about that. So did trying
+                        to make a language model do something genuinely useful
+                        with unstructured industrial logs. Both problems look
+                        manageable from the outside and get complicated fast
+                        once you are actually inside them.
+                    </p>
+                </div>
+            </section>
+            <section class="glass-card p-7 sm:p-9">
+                <p class="eyebrow mb-4">
+                    <svg class="icon" aria-hidden="true"
+                        ><use href="/icons/tabler.svg#briefcase"></use></svg
+                    >Outside the project work
+                </p><h2 class="mb-4 text-xl font-medium">
+                    Learning with other people.
+                </h2><div class="space-y-4 text-sm text-muted">
+                    <p>
+                        At Chevalier Lab I joined a Laravel study group. Laravel
+                        was not my main stack at the time, but learning it
+                        alongside other people in a structured setting showed me
+                        how much faster things click when you can ask a question
+                        out loud and hear someone else's reasoning in return.
+                    </p><p>
+                        In HIMA RPLA I served in the advocacy department for D3
+                        Application Software Engineering students. The work was
+                        mostly listening. Students would come in with a
+                        complaint, and learning to figure out what they actually
+                        needed versus what they said they needed turned out to
+                        be its own kind of skill.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
 </Layout>

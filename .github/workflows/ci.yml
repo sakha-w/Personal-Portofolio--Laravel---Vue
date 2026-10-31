@@ -1,58 +1,47 @@
-name: Laravel CI
+name: Portfolio CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
 
-      - name: Prepare Laravel environment
+      - name: Prepare isolated CI environment
         run: |
           cp .env.example .env
+          docker compose build app
+          docker compose up -d --wait postgres app
+          docker compose exec -T app composer install --no-interaction --prefer-dist
+          docker compose exec -T app php artisan key:generate --no-interaction
+          docker compose exec -T postgres createdb -U laravel portfolio_test
 
-      - name: Build Docker image
-        run: docker compose build
+      - name: Backend tests
+        run: docker compose exec -T app php artisan test --compact
 
-      - name: Start containers
-        run: docker compose up -d
-
-      - name: Install dependencies
+      - name: Unified frontend build
         run: |
-         docker compose exec -T app composer install \
-            --no-interaction \
-            --prefer-dist \
-            --no-progress            
+          npm ci --include=dev
+          npm run build
 
-      - name: Verify Laravel environment
+      - name: Same-origin production integration
         run: |
-         docker compose exec -T app \
-          test -f /var/www/.env
+          npx playwright install --with-deps chromium
+          npm run test:browser
 
-      - name: Generate application key
-        run: |
-         docker compose exec -T app \
-          php artisan key:generate
-
-      - name: Run tests
-        run: | 
-          docker compose exec -T app \
-            php artisan test
-
-      - name: Show container logs on failure
+      - name: Logs on failure
         if: failure()
         run: docker compose logs --tail=100
 
-      - name: Stop containers
+      - name: Remove CI containers
         if: always()
-        run: docker compose down -v
+        run: docker compose down --volumes

@@ -23,7 +23,7 @@ const isActive = (href: string) => currentPath === href || (href !== '/' && curr
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#1b1d20" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -38,8 +38,7 @@ const isActive = (href: string) => currentPath === href || (href !== '/' && curr
     <header class="shell sticky top-4 z-50 mt-4">
       <div class="glass-nav relative flex min-h-16 items-center justify-between gap-4 px-5">
         <a href="/" class="flex shrink-0 items-center gap-3 font-semibold tracking-tight" aria-label="Sakha Wibisono, home">
-          <span class="pixel-mark" aria-hidden="true">{Array.from({ length: 9 }, () => <span />)}</span>
-          sakha<span class="-ml-3 text-muted">.w</span>
+          sakha<span class="text-muted">.w</span>
         </a>
         <nav class="hidden items-center gap-0.5 lg:flex" aria-label="Main navigation">
           {navLinks.map(([href, label]) => <a href={href} class="nav-link" aria-current={isActive(href) ? 'page' : undefined}>{label}</a>)}
@@ -59,7 +58,7 @@ const isActive = (href: string) => currentPath === href || (href !== '/' && curr
       <a href="mailto:sakhawibisono77@gmail.com" class="text-link">Say hello <svg class="icon" aria-hidden="true"><use href="/icons/tabler.svg#arrow-up-right" /></svg></a>
     </footer>
     <script>
-      const api = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8000/api';
+      const api = '/api';
       fetch(`${api}/analytics/view`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

@@ -2,75 +2,53 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\ContentWriter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContentIndexRequest;
 use App\Http\Requests\StoreExperienceRequest;
 use App\Http\Resources\ExperienceResource;
 use App\Models\Experience;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 class ExperienceController extends Controller
 {
-    /**
-     * Display a listing of experiences.
-     */
-    public function index()
+    public function __construct(private ContentWriter $writer) {}
+
+    public function index(ContentIndexRequest $request): AnonymousResourceCollection
     {
-        $experiences = Experience::with('technologies')
-            ->orderByDesc('start_date')
-            ->get();
-
-        return ExperienceResource::collection($experiences);
-    }
-
-    /**
-     * Display the specified experience.
-     */
-    public function show(Experience $experience)
-    {
-        return new ExperienceResource($experience->load('technologies'));
-    }
-
-    /**
-     * Store a newly created experience.
-     */
-    public function store(StoreExperienceRequest $request)
-    {
-        $data = $request->validated();
-        $technologyIds = $data['technology_ids'] ?? [];
-        unset($data['technology_ids']);
-
-        $experience = Experience::create($data);
-        $experience->technologies()->sync($technologyIds);
-
-        return (new ExperienceResource($experience->load('technologies')))
-            ->response()
-            ->setStatusCode(201);
-    }
-
-    /**
-     * Update the specified experience.
-     */
-    public function update(StoreExperienceRequest $request, Experience $experience)
-    {
-        $data = $request->validated();
-        $technologyIds = $data['technology_ids'] ?? null;
-        unset($data['technology_ids']);
-
-        $experience->update($data);
-
-        if ($technologyIds !== null) {
-            $experience->technologies()->sync($technologyIds);
+        $query = Experience::with('technologies:id,name,slug')->orderByRaw('start_date DESC NULLS LAST')->orderByDesc('id');
+        if ($request->filled('q')) {
+            $query->where(fn ($query) => $query->whereLike('company', $request->searchPattern())->orWhereLike('position', $request->searchPattern()));
         }
 
+        return ExperienceResource::collection($query->paginate($request->perPage())->withQueryString());
+    }
+
+    public function show(Experience $experience): ExperienceResource
+    {
         return new ExperienceResource($experience->load('technologies'));
     }
 
-    /**
-     * Remove the specified experience.
-     */
-    public function destroy(Experience $experience)
+    public function store(StoreExperienceRequest $request): JsonResponse
     {
-        $experience->delete();
+        $experience = $this->writer->save(new Experience, $request->validated());
 
-        return response()->json(null, 204);
+        return (new ExperienceResource($experience->load('technologies')))->response()->setStatusCode(201);
+    }
+
+    public function update(StoreExperienceRequest $request, Experience $experience): ExperienceResource
+    {
+        $experience = $this->writer->save($experience, $request->validated());
+
+        return new ExperienceResource($experience->load('technologies'));
+    }
+
+    public function destroy(Experience $experience): Response
+    {
+        $this->writer->delete($experience);
+
+        return response()->noContent();
     }
 }
